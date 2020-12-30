@@ -1,5 +1,5 @@
 # WEBPACK-5
-## My webpack build
+## My webpack config
 ### Include:
 * sass
 * postcss
