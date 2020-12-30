@@ -1,84 +1,85 @@
 {
-  "name": "webpack-5",
-  "version": "1.0.0",
-  "description": "My configuration for webpack-5",
-  "main": "main.js",
-  "scripts": {
-    "production": "cross-env NODE_ENV=production webpack",
-    "development": "cross-env NODE_ENV=development webpack",
-    "server": "cross-env NODE_ENV=development webpack serve",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix --color"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "webpack-5",
+    "version": "1.0.0",
+    "description": "My configuration for webpack-5",
+    "main": "main.js",
+    "scripts": {
+        "production": "cross-env NODE_ENV=production webpack",
+        "development": "cross-env NODE_ENV=development webpack",
+        "server": "cross-env NODE_ENV=development webpack serve",
+        "lint": "eslint ./src",
+        "lint:fix": "eslint ./src --fix --color"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "npm run lint:fix",
+            "git add"
+        ]
+    },
+    "keywords": [
+        "webpack-5"
+    ],
+    "author": "Denis Lopatin www.denis-lopatin@yandex.ru",
+    "license": "ISC",
+    "browserslist": [
+        "edge 16",
+        "firefox 52",
+        "chrome 57",
+        "safari 10.1",
+        "opera 44",
+        "ios_saf 10.3",
+        "android 81",
+        "op_mob 59",
+        "and_chr 87",
+        "and_ff 83",
+        "and_uc 12.12",
+        "samsung 6.2"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "autoprefixer": "^10.1.0",
+        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.2.2",
+        "clean-webpack-plugin": "^3.0.0",
+        "cross-env": "^7.0.3",
+        "css-loader": "^5.0.1",
+        "css-minimizer-webpack-plugin": "^1.1.5",
+        "eslint": "^7.16.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react": "^7.21.5",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "file-loader": "^6.2.0",
+        "html-loader": "^1.3.2",
+        "html-webpack-plugin": "^4.5.0",
+        "husky": "^4.3.6",
+        "image-minimizer-webpack-plugin": "^2.0.0",
+        "imagemin-gifsicle": "^7.0.0",
+        "imagemin-jpegtran": "^7.0.0",
+        "imagemin-optipng": "^8.0.0",
+        "imagemin-svgo": "^8.0.0",
+        "lint-staged": "^10.5.3",
+        "mini-css-extract-plugin": "^1.3.3",
+        "postcss": "^8.2.1",
+        "postcss-loader": "^4.1.0",
+        "prettier": "^2.2.1",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.30.0",
+        "sass-loader": "^10.1.0",
+        "style-loader": "^2.0.0",
+        "terser-webpack-plugin": "^5.0.3",
+        "webpack": "^5.11.0",
+        "webpack-cli": "^4.2.0",
+        "webpack-dev-server": "^3.11.0"
+    },
+    "dependencies": {
+        "@babel/polyfill": "^7.12.1"
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:fix",
-      "git add"
-    ]
-  },
-  "keywords": [
-    "webpack-5"
-  ],
-  "author": "Denis Lopatin www.denis-lopatin@yandex.ru",
-  "license": "ISC",
-  "browserslist": [
-    "edge 16",
-    "firefox 52",
-    "chrome 57",
-    "safari 10.1",
-    "opera 44",
-    "ios_saf 10.3",
-    "android 81",
-    "op_mob 59",
-    "and_chr 87",
-    "and_ff 83",
-    "and_uc 12.12",
-    "samsung 6.2"
-  ],
-  "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "autoprefixer": "^10.1.0",
-    "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "^3.0.0",
-    "cross-env": "^7.0.3",
-    "css-loader": "^5.0.1",
-    "css-minimizer-webpack-plugin": "^1.1.5",
-    "eslint": "^7.16.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "file-loader": "^6.2.0",
-    "html-loader": "^1.3.2",
-    "html-webpack-plugin": "^4.5.0",
-    "husky": "^4.3.6",
-    "image-minimizer-webpack-plugin": "^2.0.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^7.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^8.0.0",
-    "lint-staged": "^10.5.3",
-    "mini-css-extract-plugin": "^1.3.3",
-    "postcss": "^8.2.1",
-    "postcss-loader": "^4.1.0",
-    "prettier": "^2.2.1",
-    "resolve-url-loader": "^3.1.2",
-    "sass": "^1.30.0",
-    "sass-loader": "^10.1.0",
-    "style-loader": "^2.0.0",
-    "terser-webpack-plugin": "^5.0.3",
-    "webpack": "^5.11.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.12.1"
-  }
 }
