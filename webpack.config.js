@@ -113,7 +113,6 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
-            favicon: 'src/image/magicss.ico',
             filename: 'index.html',
         }),
         new ImageMinimizerPlugin({
