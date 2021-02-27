@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -56,54 +55,6 @@ module.exports = {
                     },
                 ],
             },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    isDev
-                        ? 'style-loader'
-                        : {
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                publicPath: '../',
-                            },
-                        },
-                    'css-loader',
-                    'resolve-url-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcssOptions: {
-                                plugins: [require('autoprefixer')],
-                            },
-                        },
-                    },
-                    'sass-loader',
-                ],
-            },
-            {
-                test: /\.(png|jpe?g|gif)$/i,
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'images',
-                    name: '[name].[contenthash].[ext]',
-                },
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'fonts',
-                    name: '[name].[contenthash].[ext]',
-                },
-            },
-            {
-                test: /\.(svg)$/i,
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'images',
-                    name: '[name].[contenthash].[ext]',
-                },
-            },
         ],
     },
     plugins: [
@@ -114,25 +65,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
             filename: 'index.html',
-        }),
-        new ImageMinimizerPlugin({
-            minimizerOptions: {
-                plugins: [
-                    ['gifsicle', { interlaced: true }],
-                    ['jpegtran', { progressive: true }],
-                    ['optipng', { optimizationLevel: 5 }],
-                    [
-                        'svgo',
-                        {
-                            plugins: [
-                                {
-                                    removeViewBox: false,
-                                },
-                            ],
-                        },
-                    ],
-                ],
-            },
         }),
     ],
     optimization: {
