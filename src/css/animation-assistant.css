@@ -1,0 +1,67 @@
+[data-as="arrive"] {
+    animation-name: return;
+    animation-delay: 500ms;
+    animation-duration: 600ms;
+    animation-fill-mode: forwards;
+}
+
+[data-as*="arrive-fast"] {
+    animation-name: return;
+    animation-delay: 500ms;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+}
+
+[data-as*="arrive-slow"] {
+    animation-name: return;
+    animation-delay: 500ms;
+    animation-duration: 800ms;
+    animation-fill-mode: forwards;
+}
+
+[data-as="leave"] {
+    transition-property: transform, opacity;
+    transition-duration: 600ms;
+    transition-delay: 500ms;
+}
+
+[data-as="leave-fast"] {
+    transition-property: transform, opacity;
+    transition-duration: 400ms;
+    transition-delay: 500ms;
+}
+
+[data-as="leave-slow"] {
+    transition-property: transform, opacity;
+    transition-duration: 800ms;
+    transition-delay: 500ms;
+}
+
+.as-opacity {
+    opacity: 0;
+}
+
+.as-top {
+    transform: translateY(-25vh);
+    opacity: 0;
+}
+
+.as-bottom {
+    transform: translateY(25vh);
+    opacity: 0;
+}
+
+.as-right {
+    transform: translateX(100vw);
+}
+
+.as-left {
+    transform: translateX(-100vw);
+}
+
+@keyframes return {
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
