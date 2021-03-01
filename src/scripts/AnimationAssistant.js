@@ -2,7 +2,7 @@ export default class AnimationAssistant {
     constructor(selector) {
         this.selector = selector;
         this.elements = AnimationAssistant.getElementsBySelector(this.selector);
-        this.offset = null;
+        this.library = null;
     }
 
     static getElementsBySelector(selector) {
@@ -17,28 +17,47 @@ export default class AnimationAssistant {
         return Math.trunc((top / document.documentElement.clientHeight) * 100);
     }
 
-    addEventForGetOffset(element) {
-        const offsetTop = AnimationAssistant.getOffsetTop(element);
-        const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
-        if (this.offset > percentOfOffset) {
-            element.animationAssistantIsReady = true;
-        }
+    getLibraryPrefix() {
+        const libraries = {
+            'animate.css': 'animate__animated',
+        };
+        return libraries[this.library];
     }
 
-    setTrigger(offset) {
-        this.offset = offset;
+    setLibrary(library) {
+        this.library = library;
         this.elements.forEach((element) => {
-            window.addEventListener('scroll', this.addEventForGetOffset.bind(this, element));
+            element.classList.add(this.getLibraryPrefix());
         });
     }
 
-    setAnimation(name, timeout = 2000) {
+    setAnimation(offset, name, visibility = true) {
+        window.addEventListener('scroll', () => {
+            this.elements.forEach((element) => {
+                if (!visibility && !element.animationIsOver) {
+                    element.style.visibility = 'hidden';
+                }
+                const offsetTop = AnimationAssistant.getOffsetTop(element);
+                const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
+                const findIndex = offset.findIndex((item) => item > percentOfOffset);
+                if (findIndex !== -1) {
+                    element.style.visibility = '';
+                    element.animationIsOver = true;
+                    element.classList.add(name[findIndex]);
+                }
+            });
+        });
+    }
+
+    play(name, timeout = 2000) {
         return new Promise((resolve) => {
             this.elements.forEach((element) => {
-                name.forEach((className) => element.classList.toggle(className));
+                element.classList.toggle(name);
+                element.classList.toggle(this.play.oldClassName);
             });
+            this.play.oldClassName = name;
             setTimeout(() => {
-                resolve(this.setAnimation.bind(this));
+                resolve(this.play.bind(this));
             }, timeout);
         });
     }

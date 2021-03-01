@@ -4,8 +4,13 @@ import 'animate.css/animate.css';
 import AnimationAssistant from './AnimationAssistant';
 
 const animationAssistant = new AnimationAssistant('block-first');
-animationAssistant.setTrigger(20);
-animationAssistant
-    .setAnimation(['animate__animated', 'animate__swing'])
-    .then((res) => res(['animate__shakeX', 'animate__swing']))
-    .then((res) => res(['animate__bounceOut', 'animate__shakeX']));
+animationAssistant.setLibrary('animate.css');
+// animationAssistant
+//     .play('animate__swing', 4000)
+//     .then((res) => res('animate__shakeX'))
+//     .then((res) => res('animate__bounceOut'));
+animationAssistant.setAnimation([20, 80], ['animate__swing', 'animate__shakeX']);
+
+const blockLast = new AnimationAssistant('block-last');
+blockLast.setLibrary('animate.css');
+blockLast.setAnimation([80], ['animate__bounceInRight'], false);
