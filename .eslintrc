@@ -14,9 +14,11 @@
         ],
         "no-console": "warn",
         "linebreak-style": "off",
+        "no-param-reassign": "off",
         "quotes": "off",
         "max-len": [
             "error",
+            100,
             {
                 "ignoreComments": true,
                 "ignoreUrls": true,

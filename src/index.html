@@ -8,32 +8,127 @@
     <title>Animation assistant</title>
 </head>
 <style>
+    * {
+        box-sizing: inherit;
+    }
+    html {
+        font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: 16px;
+        box-sizing: border-box;
+    }
     body {
         margin: 0;
-        overflow-x: hidden;
+        background-color: black;
+    }
+    .container {
+        max-width: 1400px;
+        margin: 30px auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px floralwhite;
+    }
+    .header {
+        border-bottom: 1px solid teal;
+        margin-bottom: 10px;
+        text-align: right;
+    }
+    .section-demonstration {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .footer {
+        text-align: right;
+        color: #909090;
     }
     .heading {
-        margin: 20px 10px 40px;
+        display: inline-block;
+        margin: 0;
+        padding-bottom: 10px;
+        color: #97f1f1;
+    }
+    .text {
+        margin: 0;
+        padding-bottom: 10px;
+        line-height: 1.4;
+        color: #909090;
     }
     .block {
+        flex-basis: 40%;
         border: 1px solid darkgrey;
         border-radius: 5px;
+        margin-left: 5%;
+        margin-right: 5%;
         margin-bottom: 100px;
         padding: 10px;
     }
 </style>
 <body>
 
-<h2 class="heading as-opacity" data-as="leave-slow"> Heading for animation </h2>
-<h2 class="heading" data-as=""> Heading for animation </h2>
+<div class="container">
+    <header class="header">
+        <h1 class="heading">Animation Assistant</h1>
+    </header>
 
-<!--<div class="block as-bottom" data-as="leave">-->
-<!--    <h2> Block </h2>-->
-<!--    <p>-->
-<!--        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto assumenda, atque culpa cumque cupiditate dolorem ea enim excepturi modi nam nesciunt quasi qui reiciendis, sint sunt unde veniam voluptates? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias aut, commodi deleniti, distinctio dolorem iusto labore numquam placeat praesentium quasi recusandae. Ipsum neque placeat quos rem soluta unde ut?-->
-<!--    </p>-->
-<!--</div>-->
+    <main class="main">
+        <section class="section">
+            <h2 class="heading">Animation Assistant</h2>
+            <p class="text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci delectus dolor doloribus, earum eligendi laudantium odit officia rem suscipit voluptatibus. Aspernatur dolorum, voluptas? Cupiditate dolore, ex ipsum omnis placeat sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus dignissimos eveniet fugiat incidunt ipsa ipsam laboriosam necessitatibus nesciunt non numquam quibusdam, quidem quo reprehenderit repudiandae sequi soluta temporibus! Corporis.
+            </p>
 
+            <h2 class="heading">Animation Assistant</h2>
+            <p class="text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci delectus dolor doloribus, earum eligendi laudantium odit officia rem suscipit voluptatibus. Aspernatur dolorum, voluptas? Cupiditate dolore, ex ipsum omnis placeat sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus dignissimos eveniet fugiat incidunt ipsa ipsam laboriosam necessitatibus nesciunt non numquam quibusdam, quidem quo reprehenderit repudiandae sequi soluta temporibus! Corporis.
+            </p>
+
+            <h2 class="heading">Animation Assistant</h2>
+            <p class="text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci delectus dolor doloribus, earum eligendi laudantium odit officia rem suscipit voluptatibus. Aspernatur dolorum, voluptas? Cupiditate dolore, ex ipsum omnis placeat sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus dignissimos eveniet fugiat incidunt ipsa ipsam laboriosam necessitatibus nesciunt non numquam quibusdam, quidem quo reprehenderit repudiandae sequi soluta temporibus! Corporis.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci delectus dolor doloribus, earum eligendi laudantium odit officia rem suscipit voluptatibus. Aspernatur dolorum, voluptas? Cupiditate dolore, ex ipsum omnis placeat sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus dignissimos eveniet fugiat incidunt ipsa ipsam laboriosam necessitatibus nesciunt non numquam quibusdam, quidem quo reprehenderit repudiandae sequi soluta temporibus! Corporis.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci delectus dolor doloribus, earum eligendi laudantium odit officia rem suscipit voluptatibus. Aspernatur dolorum, voluptas? Cupiditate dolore, ex ipsum omnis placeat sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus dignissimos eveniet fugiat incidunt ipsa ipsam laboriosam necessitatibus nesciunt non numquam quibusdam, quidem quo reprehenderit repudiandae sequi soluta temporibus! Corporis.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci delectus dolor doloribus, earum eligendi laudantium odit officia rem suscipit voluptatibus. Aspernatur dolorum, voluptas? Cupiditate dolore, ex ipsum omnis placeat sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus dignissimos eveniet fugiat incidunt ipsa ipsam laboriosam necessitatibus nesciunt non numquam quibusdam, quidem quo reprehenderit repudiandae sequi soluta temporibus! Corporis.
+            </p>
+
+            <h2 class="heading">Animation Assistant</h2>
+        </section>
+        <section class="section section-demonstration">
+            <div class="block block-first">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores dolorum enim eos, fuga illo iure maxime nulla possimus quam quasi similique suscipit vel veniam voluptas. At quia sapiente sit.
+                </p>
+            </div>
+            <div class="block block-first">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores dolorum enim eos, fuga illo iure maxime nulla possimus quam quasi similique suscipit vel veniam voluptas. At quia sapiente sit.
+                </p>
+            </div>
+            <div class="block block-first">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores dolorum enim eos, fuga illo iure maxime nulla possimus quam quasi similique suscipit vel veniam voluptas. At quia sapiente sit.
+                </p>
+            </div>
+            <div class="block">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores dolorum enim eos, fuga illo iure maxime nulla possimus quam quasi similique suscipit vel veniam voluptas. At quia sapiente sit.
+                </p>
+            </div>
+            <div class="block">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores dolorum enim eos, fuga illo iure maxime nulla possimus quam quasi similique suscipit vel veniam voluptas. At quia sapiente sit.
+                </p>
+            </div>
+            <div class="block">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores dolorum enim eos, fuga illo iure maxime nulla possimus quam quasi similique suscipit vel veniam voluptas. At quia sapiente sit.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        (c) animation-assistant
+    </footer>
+</div>
 
 </body>
 </html>
