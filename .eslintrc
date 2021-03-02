@@ -16,6 +16,8 @@
         "linebreak-style": "off",
         "no-param-reassign": "off",
         "quotes": "off",
+        "object-curly-newline": "off",
+        "no-unused-expressions": "off",
         "max-len": [
             "error",
             100,

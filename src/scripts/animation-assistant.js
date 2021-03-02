@@ -9,8 +9,19 @@ animationAssistant.setLibrary('animate.css');
 //     .play('animate__swing', 4000)
 //     .then((res) => res('animate__shakeX'))
 //     .then((res) => res('animate__bounceOut'));
-animationAssistant.setAnimation([20, 80], ['animate__swing', 'animate__shakeX']);
+animationAssistant.setAnimation(50, 'animate__shakeX');
 
 const blockLast = new AnimationAssistant('block-last');
 blockLast.setLibrary('animate.css');
-blockLast.setAnimation([80], ['animate__bounceInRight'], false);
+blockLast.hideAtStart();
+blockLast.adaptEnvironment();
+blockLast.setAnimation(40, 'animate__bounceInRight', (event) => {
+    console.log('end');
+    console.log(event.target);
+});
+
+const blockDelete = new AnimationAssistant('block-delete');
+blockDelete.setLibrary('animate.css');
+blockDelete.hideAtStart();
+blockDelete.adaptEnvironment();
+blockDelete.setAnimation(90, 'animate__backInRight');

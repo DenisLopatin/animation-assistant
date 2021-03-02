@@ -2,7 +2,8 @@ export default class AnimationAssistant {
     constructor(selector) {
         this.selector = selector;
         this.elements = AnimationAssistant.getElementsBySelector(this.selector);
-        this.library = null;
+        this.library = 'animation-assistant';
+        this.hide = false;
     }
 
     static getElementsBySelector(selector) {
@@ -17,35 +18,57 @@ export default class AnimationAssistant {
         return Math.trunc((top / document.documentElement.clientHeight) * 100);
     }
 
-    getLibraryPrefix() {
+    static getLibraryPrefix(library) {
         const libraries = {
             'animate.css': 'animate__animated',
         };
-        return libraries[this.library];
+        return libraries[library];
     }
 
     setLibrary(library) {
         this.library = library;
         this.elements.forEach((element) => {
-            element.classList.add(this.getLibraryPrefix());
+            element.classList.add(AnimationAssistant.getLibraryPrefix(this.library));
         });
     }
 
-    setAnimation(offset, name, visibility = true) {
+    setAnimation(offset, name, animationEnd) {
         window.addEventListener('scroll', () => {
             this.elements.forEach((element) => {
-                if (!visibility && !element.animationIsOver) {
-                    element.style.visibility = 'hidden';
-                }
                 const offsetTop = AnimationAssistant.getOffsetTop(element);
                 const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
-                const findIndex = offset.findIndex((item) => item > percentOfOffset);
-                if (findIndex !== -1) {
-                    element.style.visibility = '';
-                    element.animationIsOver = true;
-                    element.classList.add(name[findIndex]);
+                if (offset > percentOfOffset) {
+                    element.classList.add(name);
+                    element.addEventListener('animationend', animationEnd);
+                    if (this.hide) {
+                        element.style.visibility = '';
+                    }
                 }
             });
+        });
+    }
+
+    hideAtStart() {
+        this.hide = true;
+        this.elements.forEach((element) => {
+            element.style.visibility = 'hidden';
+        });
+    }
+
+    adaptEnvironment() {
+        this.elements.forEach((element) => {
+            const parent = element.parentElement;
+            if (parent.tagName === 'HTML' || parent.tagName === 'BODY') {
+                const prev = element.previousElementSibling;
+                const div = document.createElement('div');
+                div.style.overflow = 'hidden';
+                div.append(element);
+                prev
+                    ? prev.insertAdjacentElement('afterend', div)
+                    : document.body.insertAdjacentElement('afterbegin', element);
+            } else {
+                element.parentElement.style.overflow = 'hidden';
+            }
         });
     }
 
