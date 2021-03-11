@@ -18,6 +18,25 @@ export default class AnimationAssistant {
         return Math.trunc((top / document.documentElement.clientHeight) * 100);
     }
 
+    static getMaxHeightOfPage() {
+        return Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight,
+            document.body.clientHeight,
+            document.documentElement.clientHeight,
+        );
+    }
+
+    static isEndOfPage() {
+        const offsetTop = AnimationAssistant.getOffsetTop(document.documentElement);
+        const maxHeightOfPage = AnimationAssistant.getMaxHeightOfPage();
+        const clientHeight = document.documentElement.clientHeight;
+        const documentElementOffsetTop = (maxHeightOfPage - clientHeight) * -1;
+        return offsetTop === documentElementOffsetTop;
+    }
+
     static getLibraryPrefix(library) {
         const libraries = {
             'animate.css': 'animate__animated',
@@ -32,19 +51,9 @@ export default class AnimationAssistant {
         });
     }
 
-    setAnimation(offset, name, animationEnd) {
-        window.addEventListener('scroll', () => {
-            this.elements.forEach((element) => {
-                const offsetTop = AnimationAssistant.getOffsetTop(element);
-                const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
-                if (offset > percentOfOffset) {
-                    element.classList.add(name);
-                    element.addEventListener('animationend', animationEnd);
-                    if (this.hide) {
-                        element.style.visibility = '';
-                    }
-                }
-            });
+    addClasses(classes) {
+        this.elements.forEach((element) => {
+            classes.forEach((className) => element.classList.add(className));
         });
     }
 
@@ -69,6 +78,23 @@ export default class AnimationAssistant {
             } else {
                 element.parentElement.style.overflow = 'hidden';
             }
+        });
+    }
+
+    setAnimation(offset, name, animationEnd) {
+        window.addEventListener('scroll', () => {
+            this.elements.forEach((element) => {
+                const offsetTop = AnimationAssistant.getOffsetTop(element);
+                const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
+                const isEndOfPage = AnimationAssistant.isEndOfPage();
+                if (offset > percentOfOffset || isEndOfPage) {
+                    element.classList.add(name);
+                    element.addEventListener('animationend', animationEnd);
+                    if (this.hide) {
+                        element.style.visibility = '';
+                    }
+                }
+            });
         });
     }
 

@@ -22,6 +22,7 @@ blockLast.setAnimation(40, 'animate__bounceInRight', (event) => {
 
 const blockDelete = new AnimationAssistant('block-delete');
 blockDelete.setLibrary('animate.css');
+blockDelete.addClasses(['animate__delay-3s', 'animate__slower', 'animate__repeat-2']);
 blockDelete.hideAtStart();
 blockDelete.adaptEnvironment();
 blockDelete.setAnimation(90, 'animate__backInRight');
