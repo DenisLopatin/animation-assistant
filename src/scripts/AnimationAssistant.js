@@ -67,7 +67,7 @@ export default class AnimationAssistant {
     adaptEnvironment() {
         this.elements.forEach((element) => {
             const parent = element.parentElement;
-            if (parent.tagName === 'HTML' || parent.tagName === 'BODY') {
+            if (parent.tagName === 'BODY') {
                 const prev = element.previousElementSibling;
                 const div = document.createElement('div');
                 div.style.overflow = 'hidden';
@@ -101,13 +101,15 @@ export default class AnimationAssistant {
     play(name, timeout = 2000) {
         return new Promise((resolve) => {
             this.elements.forEach((element) => {
-                element.classList.toggle(name);
-                element.classList.toggle(this.play.oldClassName);
+                element.classList.add(name);
+                element.classList.remove(this.play.oldClassName);
+                element.addEventListener('animationend', () => {
+                    setTimeout(() => {
+                        resolve(this.play.bind(this));
+                    }, timeout);
+                });
             });
             this.play.oldClassName = name;
-            setTimeout(() => {
-                resolve(this.play.bind(this));
-            }, timeout);
         });
     }
 }

@@ -1,28 +1,46 @@
 import '../index.html';
-// import '../css/animation-assistant.css';
 import 'animate.css/animate.css';
 import AnimationAssistant from './AnimationAssistant';
 
-const animationAssistant = new AnimationAssistant('block-first');
-animationAssistant.setLibrary('animate.css');
-// animationAssistant
-//     .play('animate__swing', 4000)
-//     .then((res) => res('animate__shakeX'))
-//     .then((res) => res('animate__bounceOut'));
-animationAssistant.setAnimation(50, 'animate__shakeX');
+// animate.css
+const animationCssExamplePlay = new AnimationAssistant('animation-css-example-play');
+animationCssExamplePlay.setLibrary('animate.css');
+animationCssExamplePlay
+    .play('animate__headShake', 2200)
+    .then((res) => res('animate__rubberBand', 4000))
+    .then((res) => res('animate__tada'));
 
-const blockLast = new AnimationAssistant('block-last');
-blockLast.setLibrary('animate.css');
-blockLast.hideAtStart();
-blockLast.adaptEnvironment();
-blockLast.setAnimation(40, 'animate__bounceInRight', (event) => {
-    console.log('end');
-    console.log(event.target);
+const button = document.querySelector('button');
+button.addEventListener(
+    'click',
+    () => {
+        animationCssExamplePlay
+            .play('animate__headShake', 2200)
+            .then((res) => res('animate__rubberBand', 4000))
+            .then((res) => res('animate__tada'));
+    },
+    { once: true },
+);
+
+const animationCssExampleSetAnimation = new AnimationAssistant(
+    'animation-css-example-set-animation',
+);
+animationCssExampleSetAnimation.setLibrary('animate.css');
+animationCssExampleSetAnimation.setAnimation(20, 'animate__backInRight');
+
+const animationCssExampleSetAnimation2 = new AnimationAssistant(
+    'animation-css-example-set-animation2',
+);
+animationCssExampleSetAnimation2.setLibrary('animate.css');
+animationCssExampleSetAnimation2.adaptEnvironment();
+animationCssExampleSetAnimation2.hideAtStart();
+animationCssExampleSetAnimation2.setAnimation(20, 'animate__backInRight');
+
+const animationCssExampleAddClasses = new AnimationAssistant('animation-css-example-add-classes');
+animationCssExampleAddClasses.setLibrary('animate.css');
+animationCssExampleAddClasses.addClasses(['animate__slower', 'animate__repeat-2']);
+animationCssExampleAddClasses.adaptEnvironment();
+animationCssExampleAddClasses.hideAtStart();
+animationCssExampleAddClasses.setAnimation(20, 'animate__backInRight', function () {
+    console.log(this);
 });
-
-const blockDelete = new AnimationAssistant('block-delete');
-blockDelete.setLibrary('animate.css');
-blockDelete.addClasses(['animate__delay-3s', 'animate__slower', 'animate__repeat-2']);
-blockDelete.hideAtStart();
-blockDelete.adaptEnvironment();
-blockDelete.setAnimation(90, 'animate__backInRight');
