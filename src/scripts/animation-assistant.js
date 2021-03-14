@@ -41,6 +41,26 @@ animationCssExampleAddClasses.setLibrary('animate.css');
 animationCssExampleAddClasses.addClasses(['animate__slower', 'animate__repeat-2']);
 animationCssExampleAddClasses.adaptEnvironment();
 animationCssExampleAddClasses.hideAtStart();
-animationCssExampleAddClasses.setAnimation(20, 'animate__backInRight', function () {
-    console.log(this);
+animationCssExampleAddClasses.setAnimation(20, 'animate__backInRight', () => {
+    // something
 });
+
+// cssanimation
+const cssAnimationExample = new AnimationAssistant('cssanimation-example');
+cssAnimationExample.setLibrary('cssanimation');
+cssAnimationExample.hideAtStart();
+cssAnimationExample.setAnimation(80, 'swingInBottom');
+
+const cssAnimationExampleInfinity = new AnimationAssistant('cssanimation-example-infinity');
+cssAnimationExampleInfinity.setLibrary('cssanimation');
+cssAnimationExampleInfinity.setAnimation(30, 'hu__hu__', () => {
+    // something
+});
+
+const cssAnimationExampleBreak = new AnimationAssistant('cssanimation-example-break');
+cssAnimationExampleBreak.setLibrary('cssanimation');
+cssAnimationExampleBreak.setAnimation(30, 'leFadeInLeft');
+
+const cssAnimationExampleSequence = new AnimationAssistant('cssanimation-example-sequence');
+cssAnimationExampleSequence.setLibrary('cssanimation');
+cssAnimationExampleSequence.setAnimation(30, 'leFadeInLeft');

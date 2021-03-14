@@ -2,7 +2,7 @@ export default class AnimationAssistant {
     constructor(selector) {
         this.selector = selector;
         this.elements = AnimationAssistant.getElementsBySelector(this.selector);
-        this.library = 'animation-assistant';
+        this.library = null;
         this.hide = false;
     }
 
@@ -12,6 +12,10 @@ export default class AnimationAssistant {
 
     static getOffsetTop(element) {
         return element.getBoundingClientRect().top;
+    }
+
+    static getOffsetBottom(element) {
+        return element.getBoundingClientRect().bottom;
     }
 
     static getPercentOfOffset(top) {
@@ -37,9 +41,32 @@ export default class AnimationAssistant {
         return offsetTop === documentElementOffsetTop;
     }
 
+    static scrollEventForElement(elements, hidden, offset, name, animationEnd, elementFromTop) {
+        elements.forEach((element) => {
+            const offsetTop = AnimationAssistant.getOffsetTop(element);
+            const offsetBottom = AnimationAssistant.getOffsetBottom(element);
+            const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
+            const isEndOfPage = AnimationAssistant.isEndOfPage();
+            if (elementFromTop) {
+                if (offset > percentOfOffset || isEndOfPage) {
+                    element.classList.add(name);
+                    element.addEventListener('animationend', animationEnd);
+                    hidden ? (element.style.visibility = '') : '';
+                }
+            } else if (!elementFromTop) {
+                if (offsetBottom > 0) {
+                    element.classList.add(name);
+                    element.addEventListener('animationend', animationEnd);
+                    hidden ? (element.style.visibility = '') : '';
+                }
+            }
+        });
+    }
+
     static getLibraryPrefix(library) {
         const libraries = {
             'animate.css': 'animate__animated',
+            cssanimation: 'cssanimation',
         };
         return libraries[library];
     }
@@ -82,19 +109,36 @@ export default class AnimationAssistant {
     }
 
     setAnimation(offset, name, animationEnd) {
-        window.addEventListener('scroll', () => {
-            this.elements.forEach((element) => {
-                const offsetTop = AnimationAssistant.getOffsetTop(element);
-                const percentOfOffset = AnimationAssistant.getPercentOfOffset(offsetTop);
-                const isEndOfPage = AnimationAssistant.isEndOfPage();
-                if (offset > percentOfOffset || isEndOfPage) {
-                    element.classList.add(name);
-                    element.addEventListener('animationend', animationEnd);
-                    if (this.hide) {
-                        element.style.visibility = '';
-                    }
-                }
-            });
+        this.elements.forEach((element) => {
+            const offsetTop = AnimationAssistant.getOffsetTop(element);
+            const elementIsTop = window.pageYOffset < offsetTop + window.pageYOffset;
+            if (elementIsTop) {
+                window.addEventListener(
+                    'scroll',
+                    AnimationAssistant.scrollEventForElement.bind(
+                        null,
+                        this.elements,
+                        this.hide,
+                        offset,
+                        name,
+                        animationEnd,
+                        true,
+                    ),
+                );
+            } else {
+                window.addEventListener(
+                    'scroll',
+                    AnimationAssistant.scrollEventForElement.bind(
+                        null,
+                        this.elements,
+                        this.hide,
+                        offset,
+                        name,
+                        animationEnd,
+                        false,
+                    ),
+                );
+            }
         });
     }
 
