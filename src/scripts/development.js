@@ -1,4 +1,4 @@
-import '../index.html';
+import '../ru-index.html';
 import 'animate.css/animate.min.css';
 import 'hover.css/css/hover-min.css';
 import 'csshake/dist/csshake.min.css';

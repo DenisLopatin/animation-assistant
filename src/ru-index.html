@@ -173,8 +173,43 @@
             </div>
 
             <h2 class="heading">Начало работы</h2>
+
             <p class="text">
-                Для начала необходимо получить экземпляр класса <span class="info">AnimationAssistant</span> вызвав соответствующий конструктор и пердав ему CSS селектор анимируемых элементов. Например:
+                Установите плагин в ваш проект используя NPM
+            </p>
+
+            <pre>
+            <code>
+            npm install --save animation-assistant
+            </code>
+            </pre>
+
+            <p class="text">
+                Подключите его удобным вам способом:
+            </p>
+
+            <p class="text">
+                CommonJS:
+            </p>
+
+            <pre>
+            <code>
+            const AnimationAssistant = require('AnimationAssistant');
+            </code>
+            </pre>
+
+            <p class="text">
+                ESM:
+            </p>
+
+            <pre>
+            <code>
+            import AnimationAssistant from 'AnimationAssistant';
+            </code>
+            </pre>
+
+            <p class="text">
+                Для начала необходимо получить экземпляр класса <span class="info">AnimationAssistant</span> вызвав соответствующий конструктор и передав ему CSS селектор анимируемых элементов. Например:
             </p>
 
             <p>HTML</p>
@@ -230,7 +265,7 @@
             </p>
 
             <p class="text">
-                <span class="info">addClasses</span> - Принимает массив с классами. Иногда нам необходимо добавить ряд дополнительных классов к элементам. Допустим, следуя примеру выше - это может быть <span class="info">animation.addClasses(['animate__slower', 'animate__repeat-2'])</span>, так как мы хотим что-бы анимация была медленной и повторялась два раза. Вы сами можете увидеть эти классы на официальной странице библиотеки <a href="https://animate.style/">animation.css</a>. В разных библиотеках есть свои вспомогательные классы или классы помошники, вы сможете установить их используя данный метод. Важно понимать, что они будут установленны сразу, не отталкиваясь от позиции на странице, событий и прочего.
+                <span class="info">addClasses</span> - Принимает массив с классами. Иногда нам необходимо добавить ряд дополнительных классов к элементам. Допустим, следуя примеру выше - это может быть <span class="info">animation.addClasses(['animate__slower', 'animate__repeat-2'])</span>, так как мы хотим что-бы анимация была медленной и повторялась два раза. Вы сами можете увидеть эти классы на официальной странице библиотеки <a href="https://animate.style/">animation.css</a>. В разных библиотеках есть свои вспомогательные классы или классы помощники, вы сможете установить их используя данный метод. Важно понимать, что они будут установленны сразу, не отталкиваясь от позиции на странице, событий и прочего.
             </p>
 
             <p class="text">
@@ -246,7 +281,7 @@
             </p>
 
             <p class="text">
-                <span class="info">play</span> - Запускает анимацию. В отличии от <span class="info">setAnimation</span> она запускает анимацию сразу не дожидаясь действия какого дибо события, но забегая наперед - ничто не помешает вам такое событие придумать. Принимает два параметра. <span class="info">name</span> - имя анимации, которое предоставляет библиотека. <span class="info">timeout</span> - время, спустя которое должна запуститься следующая анимация со значением по умолчанию в 2000ms. Обратите внимание, что указанное время в параметре <span class="info">timeout</span> не гарантирует запуск следующей анимации по истечении указанного вами времени или значения по умолчанию если таковое не было задано. Оно гарантирует звпуск следующей анимации не раньше, чем указанное вами время. Метод возвращает промис. Примеры приведены ниже.
+                <span class="info">play</span> - Запускает анимацию. В отличии от <span class="info">setAnimation</span> она запускает анимацию сразу не дожидаясь действия какого дибо события, но забегая наперед - ничто не помешает вам такое событие придумать. Принимает два параметра. <span class="info">name</span> - имя анимации, которое предоставляет библиотека. <span class="info">timeout</span> - время, спустя которое должна запуститься следующая анимация со значением по умолчанию в 2000ms. Обратите внимание, что указанное время в параметре <span class="info">timeout</span> не гарантирует запуск следующей анимации по истечении указанного вами времени или значения по умолчанию если таковое не было задано. Оно гарантирует запуск следующей анимации не раньше, чем указанное вами время. Метод возвращает промис. Примеры приведены ниже.
             </p>
 
             <h2 class="heading">Общие требования</h2>
@@ -254,13 +289,13 @@
                 Не зависимо от того с какой библиотекой вы собираетесь работать, вы должны установить ее используя npm или cdn. Затем вам нужно создать новый экземпляр класса <span class="info">AnimationAssistant</span> передав туда CSS селектор элементов с которыми вы будите работать. Примеры были приведены выше.
 
             <p class="text">
-                Так-же мы опишем здесь общие методы для работы с элементами не зависимо от библиотеки:
+                Также мы опишем здесь общие методы для работы с элементами независимо от библиотеки:
             </p>
 
             <pre>
             <code>
             const animation = new AnimationAssistant('your-classes'); <span class="code-comment">// выбираем нужные нам элементы</span>
-            animation.setLibrary('your-library'); <span class="code-comment">// установливаем библиотеку</span>
+            animation.setLibrary('your-library'); <span class="code-comment">// устанавливаем библиотеку</span>
             animation.addClasses(['first-class', 'second-class']); <span class="code-comment">// добавляем нужные классы</span>
             animation.hideAtStart(); <span class="code-comment">// делаем элемент невидимым до начала анимации </span>
             animation.adaptEnvironment(); <span class="code-comment">// адаптируем окружение</span>
@@ -278,7 +313,7 @@
             <h2 class="heading">Информация о работе плагина</h2>
 
             <p class="text">
-                Метод <span class="info">setLibrary</span> является обязательным, не забыдьте вызвать его перед началом работы.
+                Метод <span class="info">setLibrary</span> является обязательным, не забудьте вызвать его перед началом работы.
             </p>
 
             <p class="text">
@@ -463,7 +498,7 @@
             </div>
 
             <p class="text">
-                Помимо всего этого нам могут понадобиться дополнительные классы. Например для библиотеки <span class="info">animate.css</span> это могут быть <span class="info">animate__slower</span> для более медлееного проигрывания анимации и <span class="info">animate__repeat-2</span> для двухкратного повторения анимации. Что-бы их добавить воспользуемся методом <span class="info">addClasses</span>.
+                Помимо всего этого нам могут понадобиться дополнительные классы. Например для библиотеки <span class="info">animate.css</span> это могут быть <span class="info">animate__slower</span> для более медленного проигрывания анимации и <span class="info">animate__repeat-2</span> для двукратного повторения анимации. Что-бы их добавить воспользуемся методом <span class="info">addClasses</span>.
             </p>
 
             <pre>
@@ -480,13 +515,13 @@
                 <div class="block animation-css-example-add-classes">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода addClasses объекта <span class="info">animationCssExampleAddClasses</span>.
+                        Результат выполнения метода <span class="info">addClasses</span> объекта <span class="info">animationCssExampleAddClasses</span>.
                     </p>
                 </div>
                 <div class="block animation-css-example-add-classes">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода addClasses объекта <span class="info">animationCssExampleAddClasses</span>. Теперь все работает корректно.
+                        Результат выполнения метода <span class="info">addClasses</span> объекта <span class="info">animationCssExampleAddClasses</span>. Теперь все работает корректно.
                     </p>
                 </div>
             </div>
@@ -542,7 +577,7 @@
                 <div class="block cssanimation-example">
                     <h2 class="heading">cssanimation</h2>
                     <p class="text">
-                        Результат выполнения метода setAnimation объекта <span class="info">cssAnimationExample</span>.
+                        Результат выполнения метода <span class="info">setAnimation</span> объекта <span class="info">cssAnimationExample</span>.
                     </p>
                 </div>
                 <div class="block cssanimation-example">
@@ -554,7 +589,7 @@
             </div>
 
             <p class="text">
-                При работе с этой библиотекой слудет обратить внимание на две важные особенности. Во первых многие ее анимации имеют свойство <span class="info">animation-iteration-count</span> со значением <span class="info">infinite</span>, а во вторых некоторые её анимации работают с элементами <span class="info">span</span>, которые вложены в контейнер. В самой документации они обозначаются с классом <span class="info">sequence</span>, который написан там только для удобства, что-бы понять когда анимация будет работать не с самим элементом, а с его потомками. Метод <span class="info">play</span> не будет работать, потому что предыдущая анимация никогда не закончится, следовательно новая не начнется.
+                При работе с этой библиотекой следует обратить внимание на две важные особенности. Во первых многие ее анимации имеют свойство <span class="info">animation-iteration-count</span> со значением <span class="info">infinite</span>, а во вторых некоторые её анимации работают с элементами <span class="info">span</span>, которые вложены в контейнер. В самой документации они обозначаются с классом <span class="info">sequence</span>, который написан там только для удобства, что-бы понять когда анимация будет работать не с самим элементом, а с его потомками. Метод <span class="info">play</span> не будет работать, потому что предыдущая анимация никогда не закончится, следовательно новая не начнется.
             </p>
 
             <div class="notice">
@@ -692,7 +727,7 @@
             <h2 class="heading" id="hover.css">hover.css</h2>
 
             <p class="text">
-                При работе с этой библиотекой вам следует учитывать два важных нюанса. Первый - эта библиотека не предназначена для CSS анимаций в том виде в каком вы их видели ранее, она отвечает за такие состояния элемента как <span class="info">:hover</span> <span class="info">:focus</span> и <span class="info">:active</span>. Второй - при работе с ней не обязательно вызывать метод <span class="info">setLibrary</span>.
+                При работе с этой библиотекой вам следует учитывать два важных нюанса. Первый - эта библиотека не предназначена для CSS анимаций в том виде в каком вы их видели ранее, она отвечает за такие состояния элемента как <span class="info">:hover</span>, <span class="info">:focus</span> и <span class="info">:active</span>. Второй - при работе с ней не обязательно вызывать метод <span class="info">setLibrary</span>.
             </p>
 
             <p class="text">
@@ -817,7 +852,7 @@
             <h2 class="heading" id="CSShake">CSShake</h2>
 
             <p class="text">
-                Библиотека в основном предназначена для анимации элементов при наведении, но ею можно воспользоваться и при других событиях. Вызов метода setLibrary не является обязательным при работе с данной библиотекой.
+                Библиотека в основном предназначена для анимации элементов при наведении, но ею можно воспользоваться и при других событиях. Вызов метода <span class="info">setLibrary</span> не является обязательным при работе с данной библиотекой.
             </p>
 
             <p class="text">
@@ -855,7 +890,7 @@
 
             <div class="notice">
                 <p class="notice-text">
-                    Классы этой библиотеки добавляют к элементу два свойства <span class="info">display: inherit;</span> и <span class="info">transform-origin: center center;</span>. Если последний не должен нас волновать, то изменения свойства <span class="info">display</span> на элементе может привести к его не корректному отображению. Два блока выше из-за этого отобразились не так как предполагалось. Имейте это в виду.
+                    Классы этой библиотеки добавляют к элементу два свойства <span class="info">display: inherit;</span> и <span class="info">transform-origin: center center;</span>. Если последний не должен нас волновать, то изменения свойства <span class="info">display</span> на элементе может привести к его некорректному отображению. Два блока выше из-за этого отобразились не так как предполагалось. Имейте это в виду.
                 </p>
             </div>
 
@@ -892,7 +927,7 @@
             <h2 class="heading" id="magic.css">magic.css</h2>
 
             <p class="text">
-                Для работы с библиотекой <span class="info">magic.css</span> необходимо получить экземпляр класса <span class="info">AnimationAssistant</span> и вызвать метод <span class="info">setLibrary</span>. Затем выбрать интересующую анимацию. Список всех анимайция этой библиотеки можно посмотреть <a href="https://www.minimamente.com/project/magic/">на их сайте</a>. Для следующего примера будет использован класс <span class="info">slideDownReturn</span>. Сам элемент будет скрыт до начала анимации методом <span class="info">hideAtStart</span>, а анимацию запустит основной метод плагина <span class="info">setAnimation</span>.
+                Для работы с библиотекой <span class="info">magic.css</span> необходимо получить экземпляр класса <span class="info">AnimationAssistant</span> и вызвать метод <span class="info">setLibrary</span>. Затем выбрать интересующую анимацию. Список всех анимация этой библиотеки можно посмотреть <a href="https://www.minimamente.com/project/magic/">на их сайте</a>. Для следующего примера будет использован класс <span class="info">slideDownReturn</span>. Сам элемент будет скрыт до начала анимации методом <span class="info">hideAtStart</span>, а анимацию запустит основной метод плагина <span class="info">setAnimation</span>.
             </p>
 
             <pre>
@@ -908,13 +943,13 @@
                 <div class="block magic-css">
                     <h2 class="heading">magic.css</h2>
                     <p class="text">
-                        Результыт выполнения класса slideDownReturn
+                        Результат выполнения класса slideDownReturn
                     </p>
                 </div>
                 <div class="block magic-css">
                     <h2 class="heading">magic.css</h2>
                     <p class="text">
-                        Результыт выполнения класса slideDownReturn
+                        Результат выполнения класса slideDownReturn
                     </p>
                 </div>
             </div>
@@ -946,13 +981,13 @@
                 <div class="block repaintless-css">
                     <h2 class="heading">repaintless.css</h2>
                     <p class="text">
-                        Результыт выполнения класса slide-from-top
+                        Результат выполнения класса slide-from-top
                     </p>
                 </div>
                 <div class="block repaintless-css">
                     <h2 class="heading">repaintless.css</h2>
                     <p class="text">
-                        Результыт выполнения класса slide-from-top
+                        Результат выполнения класса slide-from-top
                     </p>
                 </div>
             </div>
@@ -998,7 +1033,7 @@
             <h2 class="heading" id="other">Работа с другими CSS библиотеками для анимаций, которые не вошли в список</h2>
 
             <p class="text">
-                Вы могли не увидеть вышу любимую библиотеку CSS анимаций в списке выше. Это не означает, что данный плагин с нею не работает. Возможно они действительно могут быть не совместимы, но вы можете это проверить.
+                Вы могли неувидеть выше любимую библиотеку CSS анимаций в списке выше. Это не означает, что данный плагин с нею не работает. Возможно они действительно могут быть не совместимы, но вы можете это проверить.
             </p>
 
             <p class="text">
@@ -1027,7 +1062,7 @@
             </pre>
 
             <p class="text">
-                Далее следуйте документации библиотеки и выберая интересующие вас классы добавляйте их в метод <span class="info">play</span> или <span class="info">setAnimation</span>.
+                Далее следуйте документации библиотеки и выбирая интересующие вас классы добавляйте их в метод <span class="info">play</span> или <span class="info">setAnimation</span>.
             </p>
 
         </section>

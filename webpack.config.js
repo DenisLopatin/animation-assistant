@@ -9,15 +9,15 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
     entry: {
-        polyfill: '@babel/polyfill',
-        main: [
-            path.resolve(__dirname, 'src/scripts', 'animation-assistant.js'),
+        main: path.resolve(__dirname, 'src/scripts', 'development.js'),
+        AnimationAssistant: [
+            '@babel/polyfill',
             path.resolve(__dirname, 'src/scripts', 'AnimationAssistant.js'),
         ],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'scripts/[name].[contenthash].js',
+        filename: 'scripts/[name].js',
         publicPath: '',
     },
     target: isDev ? 'web' : 'browserslist',
@@ -66,8 +66,12 @@ module.exports = {
             filename: 'css/[name].[contenthash].css',
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'index.html'),
-            filename: 'index.html',
+            template: path.resolve(__dirname, 'src', 'ru-index.html'),
+            filename: 'ru-index.html',
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'en-index.html'),
+            filename: 'en-index.html',
         }),
     ],
     optimization: {

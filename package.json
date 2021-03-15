@@ -2,7 +2,7 @@
     "name": "animation-assistant",
     "version": "1.0.0",
     "description": "Animation assistant for a web application",
-    "main": "main.js",
+    "main": "dist/scripts/AnimationAssistant.js",
     "scripts": {
         "production": "cross-env NODE_ENV=production webpack",
         "development": "cross-env NODE_ENV=development webpack",
@@ -25,7 +25,8 @@
     "keywords": [
         "animation",
         "css-animation",
-        "animate"
+        "animate",
+        "animation-assistant"
     ],
     "author": "Denis Lopatin www.denis-lopatin@yandex.ru",
     "license": "ISC",
