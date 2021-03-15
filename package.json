@@ -68,6 +68,10 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.12.1",
-        "animate.css": "^4.1.1"
+        "animate.css": "^4.1.1",
+        "csshake": "^1.5.3",
+        "hover.css": "^2.3.2",
+        "magic.css": "^1.4.6",
+        "repaintless": "^1.4.0"
     }
 }

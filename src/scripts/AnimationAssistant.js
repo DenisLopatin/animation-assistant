@@ -1,4 +1,4 @@
-export default class AnimationAssistant {
+class AnimationAssistant {
     constructor(selector) {
         this.selector = selector;
         this.elements = AnimationAssistant.getElementsBySelector(this.selector);
@@ -66,7 +66,12 @@ export default class AnimationAssistant {
     static getLibraryPrefix(library) {
         const libraries = {
             'animate.css': 'animate__animated',
-            cssanimation: 'cssanimation',
+            'css-animation': 'cssanimation',
+            'hover.css': '',
+            'css-shake': 'shake',
+            'magic.css': 'magictime',
+            'repaintless-css': 'element-animated',
+            'tuesday-css': 'animated',
         };
         return libraries[library];
     }
@@ -146,14 +151,17 @@ export default class AnimationAssistant {
         return new Promise((resolve) => {
             this.elements.forEach((element) => {
                 element.classList.add(name);
-                element.classList.remove(this.play.oldClassName);
+                element.classList.remove(element.ASoldClassName);
+                element.ASoldClassName = name;
                 element.addEventListener('animationend', () => {
                     setTimeout(() => {
                         resolve(this.play.bind(this));
                     }, timeout);
                 });
             });
-            this.play.oldClassName = name;
         });
     }
 }
+
+export default AnimationAssistant;
+module.exports = AnimationAssistant;
