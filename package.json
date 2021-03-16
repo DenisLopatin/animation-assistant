@@ -1,7 +1,7 @@
 {
     "name": "animation-assistant",
     "version": "1.0.0",
-    "description": "Animation assistant for a web application",
+    "description": "Assistant for working with CSS animations",
     "main": "dist/scripts/AnimationAssistant.js",
     "scripts": {
         "production": "cross-env NODE_ENV=production webpack",
