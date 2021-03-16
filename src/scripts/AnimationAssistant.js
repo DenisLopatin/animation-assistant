@@ -3,6 +3,7 @@ class AnimationAssistant {
         this.selector = selector;
         this.elements = AnimationAssistant.getElementsBySelector(this.selector);
         this.library = null;
+        this.mobile = null;
         this.hide = false;
     }
 
@@ -63,6 +64,12 @@ class AnimationAssistant {
         });
     }
 
+    static showElements(elements) {
+        elements.forEach((element) => {
+            element.style.visibility = '';
+        });
+    }
+
     static getLibraryPrefix(library) {
         const libraries = {
             'animate.css': 'animate__animated',
@@ -81,6 +88,13 @@ class AnimationAssistant {
         this.elements.forEach((element) => {
             element.classList.add(AnimationAssistant.getLibraryPrefix(this.library));
         });
+    }
+
+    onPhone(value) {
+        const isNumber = Math.trunc(Number(value));
+        if (typeof isNumber === 'number') {
+            this.mobile = value;
+        }
     }
 
     addClasses(classes) {
@@ -114,6 +128,11 @@ class AnimationAssistant {
     }
 
     setAnimation(offset, name, animationEnd) {
+        const documentWidth = document.documentElement.clientWidth;
+        if (documentWidth < this.mobile && this.hide) {
+            AnimationAssistant.showElements(this.elements);
+            return;
+        }
         this.elements.forEach((element) => {
             const offsetTop = AnimationAssistant.getOffsetTop(element);
             const elementIsTop = window.pageYOffset < offsetTop + window.pageYOffset;
@@ -148,6 +167,11 @@ class AnimationAssistant {
     }
 
     play(name, timeout = 2000) {
+        const documentWidth = document.documentElement.clientWidth;
+        if (documentWidth < this.mobile && this.hide) {
+            AnimationAssistant.showElements(this.elements);
+            return false;
+        }
         return new Promise((resolve) => {
             this.elements.forEach((element) => {
                 element.classList.add(name);

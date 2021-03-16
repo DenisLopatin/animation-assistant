@@ -24,7 +24,7 @@
         color: #909090;
     }
     pre {
-        overflow-x: scroll;
+        overflow-x: auto;
         display: flex;
         border: 1px solid;
         border-radius: 10px;
@@ -281,6 +281,10 @@
             </p>
 
             <p class="text">
+                <span class="info">onPhone</span> - Adjusts the screen resolution below which the animation will not be played. For example, an object when the method is called <span class="info">animation.onPhone(600)</span> will not play animations if the user's screen resolution is below 600px. It will also return all the hidden elements by the function <span class="info">hideAtStart</span> if they were active.
+            </p>
+
+            <p class="text">
                 <span class="info">setAnimation</span> - Configures the animation to work. The main method for working with animations. Accepts three parameters. <span class="info">offset</span> - a number from 1 to 100 indicating the percentage distance from the animated element to the top edge of the browser window to trigger the animation. <span class="info">name</span> - the name of the animation that the library provides. <span class="info">animationEnd</span> - callback function that will be executed after the animation is completed. Examples are given below.
             </p>
 
@@ -303,6 +307,7 @@
             animation.addClasses(['first-class', 'second-class']); <span class="code-comment">// adding the necessary classes</span>
             animation.hideAtStart(); <span class="code-comment">// making the element invisible until the animation starts </span>
             animation.adaptEnvironment(); <span class="code-comment">// adapting the environment</span>
+            animation.onPhone(680); <span class="code-comment">// does not activate animations on a screen resolution of less than 680px </span>
             </code>
             </pre>
 
@@ -326,6 +331,10 @@
 
             <p class="text">
                 Method <span class="info">setAnimation</span> configures the parameter <span class="info">offset</span> only for items that will occur when scrolling down. If you scroll the page up, this parameter will be ignored and the element will be reanimated as soon as its lower edge is equal to the upper edge of the browser window.
+            </p>
+
+            <p class="text">
+                Methods <span class="info">setAnimation</span> and <span class="info">play</span> they must be called by the most recent ones for the plugin to work more correctly.
             </p>
 
             <h2 class="heading">Recommendations</h2>
