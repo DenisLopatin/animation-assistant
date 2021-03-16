@@ -26,6 +26,7 @@ module.exports = {
         port: 9000,
         hot: true,
         open: 'firefox',
+        contentBase: path.resolve(__dirname, 'src'),
     },
     module: {
         rules: [

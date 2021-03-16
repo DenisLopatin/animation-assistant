@@ -23,8 +23,15 @@
         background-color: black;
         color: #909090;
     }
+    pre {
+        overflow-x: scroll;
+        display: flex;
+        border: 1px solid;
+        border-radius: 10px;
+        background-color: #272727;
+    }
     code {
-        color: #18a168;
+        color: #b5b5b5;
     }
     a {
         text-decoration: none;
@@ -34,6 +41,7 @@
         max-width: 1400px;
         margin: 30px auto;
         padding: 20px;
+        background-color: #1b1b1b;
         border-radius: 5px;
         box-shadow: 0 0 5px floralwhite;
     }
@@ -64,9 +72,8 @@
         line-height: 1.5;
     }
     .block {
-        position: relative;
-        z-index: -1;
         flex-basis: 40%;
+        flex-grow: 1;
         border: 1px solid darkgrey;
         border-radius: 5px;
         margin-left: 5%;
@@ -123,9 +130,6 @@
     }
     .code-new {
         color: #e141af;
-    }
-    .z-index-reset {
-        z-index: 0;
     }
     .d-block {
         display: block !important;
@@ -748,13 +752,13 @@
             </pre>
 
             <div class="section-demonstration">
-                <div class="block z-index-reset hover-css">
+                <div class="block hover-css">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-bounce-in)
                     </p>
                 </div>
-                <div class="block z-index-reset hover-css">
+                <div class="block hover-css">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-bounce-in)
@@ -772,13 +776,13 @@
             </pre>
 
             <div class="section-demonstration">
-                <div class="block z-index-reset hover-css-to-left">
+                <div class="block hover-css-to-left">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-bounce-to-left)
                     </p>
                 </div>
-                <div class="block z-index-reset hover-css-to-left">
+                <div class="block hover-css-to-left">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-bounce-to-left)
@@ -796,13 +800,13 @@
             </pre>
 
             <div class="section-demonstration">
-                <div class="block z-index-reset hover-css-curl-top-right">
+                <div class="block hover-css-curl-top-right">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-curl-top-right)
                     </p>
                 </div>
-                <div class="block z-index-reset hover-css-curl-top-right">
+                <div class="block hover-css-curl-top-right">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-curl-top-right)
@@ -834,13 +838,13 @@
             </pre>
 
             <div class="section-demonstration">
-                <div class="block z-index-reset hover-css-set-animation">
+                <div class="block hover-css-set-animation">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-curl-top-right)
                     </p>
                 </div>
-                <div class="block z-index-reset hover-css-set-animation">
+                <div class="block hover-css-set-animation">
                     <h2 class="heading">hover.css</h2>
                     <p class="text">
                         Point it at me (hvr-curl-top-right)
@@ -873,13 +877,13 @@
             </p>
 
             <div class="section-demonstration">
-                <div class="block z-index-reset css-shake">
+                <div class="block css-shake">
                     <h2 class="heading">CSShake</h2>
                     <p class="text">
                         Point it at me (shake-slow)
                     </p>
                 </div>
-                <div class="block z-index-reset css-shake">
+                <div class="block css-shake">
                     <h2 class="heading">CSShake</h2>
                     <p class="text">
                         Point it at me (shake-slow)
@@ -909,13 +913,13 @@
             </pre>
 
             <div class="section-demonstration">
-                <div class="block d-block z-index-reset css-shake-chunk">
+                <div class="block d-block css-shake-chunk">
                     <h2 class="heading">CSShake</h2>
                     <p class="text">
                         Result of class execution shake-chunk
                     </p>
                 </div>
-                <div class="block d-block z-index-reset css-shake-chunk">
+                <div class="block d-block css-shake-chunk">
                     <h2 class="heading">CSShake</h2>
                     <p class="text">
                         Result of class execution shake-chunk
@@ -1036,7 +1040,7 @@
             </p>
 
             <p class="text">
-                All you need for this is two or three object instance methods <span class="info">AnimationAssistant</span> - <span class="info">addClasses</span>, <span class="info">play</span> and <span class="info">setAnimation</span>.
+                All you need for this is three object instance methods <span class="info">AnimationAssistant</span> - <span class="info">addClasses</span>, <span class="info">play</span> and <span class="info">setAnimation</span>.
             </p>
 
             <p class="text">
