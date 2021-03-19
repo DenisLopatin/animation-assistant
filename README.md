@@ -37,11 +37,11 @@ Connect it in a convenient way:
 
 CommonJS:
 
-    const AnimationAssistant = require('AnimationAssistant');
+    const AnimationAssistant = require('animation-assistant').default;
     
 ESM:
 
-    import AnimationAssistant from 'AnimationAssistant';
+    import AnimationAssistant from 'animation-assistant';
     
 First you need to get an instance of the class AnimationAssistant by calling the appropriate constructor and passing it the CSS selector of the animated elements. For example:
 
