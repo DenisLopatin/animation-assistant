@@ -2,7 +2,7 @@
     "name": "animation-assistant",
     "version": "1.0.2",
     "description": "Assistant for working with CSS animations",
-    "main": "dist/scripts/AnimationAssistant.js",
+    "main": "src/scripts/AnimationAssistant.js",
     "scripts": {
         "production": "cross-env NODE_ENV=production webpack",
         "development": "cross-env NODE_ENV=development webpack",
