@@ -164,3 +164,4 @@ class AnimationAssistant {
 }
 
 export default AnimationAssistant;
+module.exports = AnimationAssistant;
