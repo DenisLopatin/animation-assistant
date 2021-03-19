@@ -184,6 +184,7 @@
                 <li class="list-item"><a class="link-item" href="#tuesday">tuesday 1.2.0^</a></li>
                 <li class="list-item"><a class="link-item" href="#repaintless">repaintless 1.3.0^</a></li>
                 <li class="list-item"><a class="link-item" href="#other">Perhaps your favorite CSS animation library</a></li>
+                <li class="list-item"><a class="link-item" href="#your-animations">Using your Animations</a></li>
             </ul>
 
             <p class="text">
@@ -285,19 +286,19 @@
             </div>
 
             <p class="text">
-                <span class="info">setLibrary</span> - Prepares the selected CSS library for use. Mandatory method that sets the library you selected for working with animations by adding the necessary prefix to the animated elements. For example <span class="info">animation.setLibrary('animate.css')</span> adds a prefix to the elements of one of the most famous CSS libraries for working with animations - <span class="info">animate__animated</span> and will allow you to work with this library.
+                <span class="info">setLibrary</span> - Prepares the selected CSS library for use. Mandatory method that sets the library you selected for working with animations by adding the necessary prefix to the animated elements.
             </p>
 
             <p class="text">
-                <span class="info">addClasses</span> - Accepts an array with classes. Sometimes we need to add a number of additional classes to the elements. Let's say, following the example above - it can be <span class="info">animation.addClasses(['animate__slower', 'animate__repeat-2'])</span>, since we want the animation to be slow and repeat twice. You can see these classes for yourself on the official library page <a href="https://animate.style/">animation.css</a>. Different libraries have their own helper classes or helper classes, you can install them using this method. It is important to understand that they will be installed immediately, without starting from the position on the page, events, and other things.
+                <span class="info">addClasses</span> - Accepts an array with classes. Different libraries have their own helper classes or helper classes, you can install them using this method. It is important to understand that they will be installed immediately, without starting from the position on the page, events, and other things.
             </p>
 
             <p class="text">
-                <span class="info">hideAtStart</span> - Hides the element until the animation starts. Sometimes it will be better to hide the element before the animation starts. For example, using the animation of the appearance of an element on the right, it will be strange to watch how the element is displayed on the page, then as you scroll to it, an event occurs and it disappears to pop up on the side. It is much better to hide it initially leaving an empty space where it was before the event was triggered. <span class="info">animation.hideAtStart()</span> solves this problem.
+                <span class="info">hideAtStart</span> - Hides the element until the animation starts.
             </p>
 
             <p class="text">
-                <span class="info">adaptEnvironment</span> - Adapts the element's environment for the animations to work correctly. When the CSS animation is played in place or appears on the left or top, the user does not experience any inconvenience. As soon as the animation starts to use the lower and right edges of the browser, going there at the end of the action or appearing from there, we may notice the appearance of a horizontal scroll or an increase in the length of the vertical scroll. The reason for this is that the element itself continues to take up space on the page, expanding the latter. For such animations to work correctly, you need to add <span class="info">overflow: hidden</span> to the parent element, which is what this method does. If the parent of the animated element is a tag <span class="info">BODY</span>, then this method creates a special stub for this case as well.
+                <span class="info">adaptEnvironment</span> - Adapts the element's environment for the animations to work correctly.
             </p>
 
             <p class="text">
@@ -1117,6 +1118,24 @@
 
             <p class="text">
                 Then follow the library documentation and select the classes you are interested in and add them to the method <span class="info">play</span> or <span class="info">setAnimation</span>.
+            </p>
+
+            <h2 class="heading" id="your-animations">Working with your own animations via the plugin</h2>
+
+            <p class="text">
+                You can use the plugin to work with your own animations. To do this, create an instance of the class <span class="info">AnimationAssistant</span> and pass it the CSS selector of the elements that you plan to animate. Then call the newly created object's method <span class="info">addClasses</span> and pass your main CSS class there when working with animations. It must contain at least one field - <span class="info">animation-duration</span>.
+            </p>
+
+            <pre>
+            <code>
+            const animated = new AnimationAssistant('your-selector');
+            const animated.addClasses('your-main-class-for-animation');
+            </code>
+            </pre>
+
+            <p class="text">
+                Then you need to add your CSS animation to the method <span class="info">play</span> or <span
+                    class="info">setAnimation</span>.
             </p>
 
         </section>

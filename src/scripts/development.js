@@ -45,7 +45,7 @@ animationCssExampleAddClasses.setLibrary('animate.css');
 animationCssExampleAddClasses.addClasses(['animate__slower', 'animate__repeat-2']);
 animationCssExampleAddClasses.adaptEnvironment();
 animationCssExampleAddClasses.hideAtStart();
-animationCssExampleAddClasses.setAnimation(20, 'animate__backInRight', () => {
+animationCssExampleAddClasses.setAnimation(20, 'animate__zoomInUp', () => {
     // something
 });
 

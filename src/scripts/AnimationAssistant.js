@@ -1,26 +1,65 @@
+/*
+ * Animation Assistant version 1.0.7
+ * GITHUB - https://github.com/DenisLopatin/animation-assistant
+ * NPM - https://www.npmjs.com/package/animation-assistant
+ * */
+
+/**
+ * class AnimationAssistant
+ * */
+
 class AnimationAssistant {
+    /**
+     * create new animation
+     * @param { string } selector - selector of elements
+     * */
+
     constructor(selector) {
         this.selector = selector;
         this.elements = AnimationAssistant.getElementsBySelector(this.selector);
         this.library = null;
         this.hide = false;
     }
+    /**
+     * Get all elements by selector
+     * @param { string } selector - selector of elements
+     * @return { HTMLElement }
+     * */
 
     static getElementsBySelector(selector) {
         return document.querySelectorAll(`.${selector}`);
     }
+    /**
+     * Get offset top of element
+     * @param { HTMLElement, Node } element - HTMElement
+     * @return { number }
+     * */
 
     static getOffsetTop(element) {
         return element.getBoundingClientRect().top;
     }
+    /**
+     * Get offset bottom of element
+     * @param { HTMLElement, Node } element - HTMElement
+     * @return { number }
+     * */
 
     static getOffsetBottom(element) {
         return element.getBoundingClientRect().bottom;
     }
+    /**
+     * Get percent of offset relative to the window
+     * @param { number } top - the value obtained by the method getOffsetTop
+     * @return { number }
+     * */
 
     static getPercentOfOffset(top) {
         return Math.trunc((top / document.documentElement.clientHeight) * 100);
     }
+    /**
+     * Get maximal height of page
+     * @return { number }
+     * */
 
     static getMaxHeightOfPage() {
         return Math.max(
@@ -33,6 +72,10 @@ class AnimationAssistant {
         );
     }
 
+    /**
+     * Check if the user has reached the end of the page
+     * @return { boolean }
+     * */
     static isEndOfPage() {
         const offsetTop = AnimationAssistant.getOffsetTop(document.documentElement);
         const maxHeightOfPage = AnimationAssistant.getMaxHeightOfPage();
@@ -40,6 +83,15 @@ class AnimationAssistant {
         const documentElementOffsetTop = (maxHeightOfPage - clientHeight) * -1;
         return offsetTop === documentElementOffsetTop;
     }
+    /**
+     * Add event for element
+     * @param { NodeList } elements - Elements included in the object
+     * @param { boolean } hidden - Hidden items or not
+     * @param { number } offset - A custom parameter that sets the indent of the element from the browser window for playing the animation
+     * @param { string } name - Name of animation
+     * @param { function } animationEnd - callback function that will be executed after the animation is finished
+     * @param { boolean } elementFromTop - the element is located at the bottom or top relative to the scrolling of the page at the time of its loading
+     * */
 
     static scrollEventForElement(elements, hidden, offset, name, animationEnd, elementFromTop) {
         elements.forEach((element) => {
@@ -62,6 +114,11 @@ class AnimationAssistant {
             }
         });
     }
+    /**
+     * Get prefix of library
+     * @param { string } library - library name
+     * @return { string }
+     * */
 
     static getLibraryPrefix(library) {
         const libraries = {
@@ -75,6 +132,10 @@ class AnimationAssistant {
         };
         return libraries[library];
     }
+    /**
+     * Set library of animation elements
+     * @param { string } library - library name
+     * */
 
     setLibrary(library) {
         this.library = library;
@@ -82,12 +143,19 @@ class AnimationAssistant {
             element.classList.add(AnimationAssistant.getLibraryPrefix(this.library));
         });
     }
+    /**
+     * Add classes for animation elements
+     * @param { array } classes - array with classes
+     * */
 
     addClasses(classes) {
         this.elements.forEach((element) => {
             classes.forEach((className) => element.classList.add(className));
         });
     }
+    /**
+     * Hidden elements before animation
+     * */
 
     hideAtStart() {
         this.hide = true;
@@ -95,6 +163,9 @@ class AnimationAssistant {
             element.style.visibility = 'hidden';
         });
     }
+    /**
+     * Adopted environment for animation elements
+     * */
 
     adaptEnvironment() {
         this.elements.forEach((element) => {
@@ -112,6 +183,12 @@ class AnimationAssistant {
             }
         });
     }
+    /**
+     * Set animation
+     * @param { number } offset - A custom parameter that sets the indent of the element from the browser window for playing the animation
+     * @param { name } name - animation name
+     * @param { function } animationEnd - callback function that will be executed after the animation is finished
+     * */
 
     setAnimation(offset, name, animationEnd) {
         this.elements.forEach((element) => {
@@ -146,6 +223,12 @@ class AnimationAssistant {
             }
         });
     }
+    /**
+     * Playing an animation
+     * @param { string } name - animation name
+     * @param { number } timeout - The time after which the next animation will start
+     * @return { Promise }
+     * */
 
     play(name, timeout = 2000) {
         return new Promise((resolve) => {
