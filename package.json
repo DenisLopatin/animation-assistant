@@ -1,6 +1,6 @@
 {
     "name": "animation-assistant",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Assistant for working with CSS animations",
     "main": "src/scripts/AnimationAssistant.js",
     "scripts": {
