@@ -281,10 +281,6 @@
             </p>
 
             <p class="text">
-                <span class="info">onPhone</span> - Adjusts the screen resolution below which the animation will not be played. For example, an object when the method is called <span class="info">animation.onPhone(600)</span> will not play animations if the user's screen resolution is below 600px. It will also return all the hidden elements by the function <span class="info">hideAtStart</span> if they were active.
-            </p>
-
-            <p class="text">
                 <span class="info">setAnimation</span> - Configures the animation to work. The main method for working with animations. Accepts three parameters. <span class="info">offset</span> - a number from 1 to 100 indicating the percentage distance from the animated element to the top edge of the browser window to trigger the animation. <span class="info">name</span> - the name of the animation that the library provides. <span class="info">animationEnd</span> - callback function that will be executed after the animation is completed. Examples are given below.
             </p>
 
@@ -362,6 +358,33 @@
             <p class="text">
                 The library can provide animation that will be in infinite mode. In this case you should be prepared for a number of limitations including incorrect operation of the method <span class="info">play</span> and the inability to call the callback function in the method <span class="info">setAnimation</span>.
             </p>
+
+            <p class="text">
+                If you do not want the animation to be played on tablet devices or mobile phones, then add the CSS class that you used when selecting elements by the plugin and set it two fields at the breakpoint you are interested in - <span class="info">visibility: visible !important</span> and <span class="info">animation-name: none !important</span>. For example, you have a class selector <span class="info">for-animation</span> and you start from this when using the plugin:
+            </p>
+
+            <pre>
+            <code>
+            const myAnimation = new AnimationAssistant('for-animation');
+            myAnimation.setLibrary('library');
+            myAnimation.setAnimation(...settings);
+            </code>
+            </pre>
+
+            <p class="text">
+                You don't want this animation to play on devices with screen sizes smaller than 670px. Just add the following rules to the css:
+            </p>
+
+            <pre>
+            <code>
+            @media screen and (max-width: 670px) {
+                .for-animation {
+                    visibility: visible !important;
+                    animation-name: none !important;
+                }
+            }
+            </code>
+            </pre>
 
             <div class="notice">
                 <p class="notice-text">

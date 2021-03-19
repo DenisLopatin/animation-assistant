@@ -281,10 +281,6 @@
             </p>
 
             <p class="text">
-                <span class="info">onPhone</span> - Настраивает разрешение экрана ниже которого не будет проиграна анимация. Например, объект при вызванном методе <span class="info">animation.onPhone(600)</span> не будет проигрывать анимации, если разрешение экрана пользователя ниже 600px. Он также вернет все скрытые элементы функцией <span class="info">hideAtStart</span> если они были.
-            </p>
-
-            <p class="text">
                 <span class="info">setAnimation</span> - Настраивает анимацию для работы. Основной метод для работы с анимациями. Принимает три параметра. <span class="info">offset</span> - цифра от 1 до 100 обозначающая расстояние в процентах от анимируемого элемента до верхнего края окна браузера для срабатывания анимации. <span class="info">name</span> - имя анимации, которое предоставляет библиотека. <span class="info">animationEnd</span> - callback функция, которая будет выполнена после завершения анимации. Примеры приведены ниже.
             </p>
 
@@ -362,6 +358,33 @@
             <p class="text">
                 Библиотека может предоставить анимацию которая будет в бесконечном режиме. В этом случае вы должны быть готовы к ряду ограничений среди которых некорректная работа метода <span class="info">play</span> и невозможность вызвать callback функцию в методе <span class="info">setAnimation</span>.
             </p>
+
+            <p class="text">
+                Если вы не хотите чтобы анимация проигрывалась на планшетных устройствах или мобильных телефонах, тогда добавьте в CSS класс который вы использовали при выборке элементов плагином и задайте ему два поля на интересующей вас точке останова - <span class="info">visibility: visible !important</span> и <span class="info">animation-name: none !important</span>. Например, у вас есть селектор классов <span class="info">for-animation</span> и вы отталкиваетесь от этого при использовании плагина:
+            </p>
+
+            <pre>
+            <code>
+            const myAnimation = new AnimationAssistant('for-animation');
+            myAnimation.setLibrary('library');
+            myAnimation.setAnimation(...settings);
+            </code>
+            </pre>
+
+            <p class="text">
+                Вы не хотите чтобы эта анимация проигрывалась на устройствах размеры экрана которых меньше 670px. Просто добавьте следующие правила в css:
+            </p>
+
+            <pre>
+            <code>
+            @media screen and (max-width: 670px) {
+                .for-animation {
+                    visibility: visible !important;
+                    animation-name: none !important;
+                }
+            }
+            </code>
+            </pre>
 
             <div class="notice">
                 <p class="notice-text">
