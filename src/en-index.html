@@ -45,10 +45,26 @@
         border-radius: 5px;
         box-shadow: 0 0 5px floralwhite;
     }
+    @media screen and (max-width: 1400px) {
+        .container {
+            margin: 0;
+            box-shadow: none;
+        }
+    }
     .header {
         border-bottom: 1px solid teal;
         margin-bottom: 10px;
-        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .source a {
+        font-size: xx-large;
+        font-weight: 700;
+    }
+    .source a:first-child {
+        margin-right: 20px;
     }
     .section-demonstration {
         display: flex;
@@ -139,6 +155,10 @@
 
 <div class="container">
     <header class="header">
+        <div class="source">
+            <a href="https://github.com/DenisLopatin/animation-assistant">GIT</a>
+            <a href="https://www.npmjs.com/package/animation-assistant">NPM</a>
+        </div>
         <h1 class="heading heading-header info animateCssPlay">Animation Assistant</h1>
     </header>
 
