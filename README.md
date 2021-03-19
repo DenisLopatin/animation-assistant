@@ -1,5 +1,15 @@
 # Animation Assistant
 
+It is better to read the full documentation on the site:
+
+EN:
+
+<a href="https://denislopatin.github.io/Animation-Assistant-documentation/en-index.html">EN Documentation</a>
+
+RU:
+
+<a href="https://denislopatin.github.io/Animation-Assistant-documentation/ru-index.html">RU Documentation</a>
+
 ## Introduction
 
 Plugin animation-assistant plugin is designed to help you manage animations on your site. It works with many well-known CSS animation libraries:
