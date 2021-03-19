@@ -1,5 +1,5 @@
 /*
- * Animation Assistant version 1.0.7
+ * Animation Assistant version 1.0.8
  * GITHUB - https://github.com/DenisLopatin/animation-assistant
  * NPM - https://www.npmjs.com/package/animation-assistant
  * */

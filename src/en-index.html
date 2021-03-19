@@ -306,7 +306,7 @@
             </p>
 
             <p class="text">
-                <span class="info">play</span> - Starts the animation. Unlike <span class="info">setAnimation</span> it starts the animation immediately without waiting for the action of any dibo event, but looking ahead - nothing will prevent you from coming up with such an event. Accepts two parameters. <span class="info">name</span> - the name of the animation that the library provides. <span class="info">timeout</span> - the time after which the next animation should start, with the default value of 2000ms. Note that the specified time in the parameter <span class="info">timeout</span> it does not guarantee that the next animation will start after the time you specified or the default value if it was not set. It guarantees that the next animation will start no earlier than the time you specified. The method returns a promise. Examples are given below.
+                <span class="info">play</span> - Starts the animation. Unlike <span class="info">setAnimation</span> it starts the animation immediately without waiting for the action of any dibo event, but looking ahead - nothing will prevent you from coming up with such an event. Accepts two parameters. <span class="info">name</span> - the name of the animation that the library provides. <span class="info">timeout</span> - the time after which the next animation should start, with the default value of 2000ms. Note that the time specified in the <span class="info">timeout</span> parameter does not guarantee that the next animation will start after the time you specified, or the default value if it was not set. This ensures that the next animation doesn't start until the time you specify. The method returns a promise. Examples are given below.
             </p>
 
             <h2 class="heading">General requirements</h2>
@@ -563,7 +563,7 @@
             <span class="code-new">animationCssExampleAddClasses.addClasses(['animate__slower', 'animate__repeat-2']);</span>
             animationCssExampleAddClasses.adaptEnvironment();
             animationCssExampleAddClasses.hideAtStart();
-            animationCssExampleAddClasses.setAnimation(20, 'animate__backInRight');
+            animationCssExampleAddClasses.setAnimation(20, 'animate__zoomInUp');
             </code>
             </pre>
 
