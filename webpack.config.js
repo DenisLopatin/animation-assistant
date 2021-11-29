@@ -67,8 +67,8 @@ module.exports = {
             filename: 'css/[name].[contenthash].css',
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'ru-index.html'),
-            filename: 'ru-index.html',
+            template: path.resolve(__dirname, 'src', 'index.html'),
+            filename: 'index.html',
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'en-index.html'),

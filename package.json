@@ -1,12 +1,13 @@
 {
     "name": "animation-assistant",
-    "version": "1.0.7",
-    "description": "Assistant for working with CSS animations",
-    "main": "src/scripts/AnimationAssistant.js",
+    "version": "1.0.0",
+    "description": "Animation assistant for a web application",
+    "main": "dist/scripts/AnimationAssistant.js",
     "scripts": {
         "production": "cross-env NODE_ENV=production webpack",
         "development": "cross-env NODE_ENV=development webpack",
         "server": "cross-env NODE_ENV=development webpack serve",
+        "ts-watch": "tsc-watch src/scripts/AnimationAssistant.ts",
         "lint": "eslint ./src",
         "lint:fix": "eslint ./src --fix --color",
         "publish": "npm publish"
@@ -63,6 +64,7 @@
         "sass-loader": "^10.1.0",
         "style-loader": "^2.0.0",
         "terser-webpack-plugin": "^5.0.3",
+        "tsc-watch": "^4.5.0",
         "webpack": "^5.11.0",
         "webpack-cli": "^4.2.0",
         "webpack-dev-server": "^3.11.0"

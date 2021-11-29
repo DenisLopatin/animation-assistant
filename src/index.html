@@ -21,7 +21,7 @@
     body {
         margin: 0;
         background-color: black;
-        color: #909090;
+        color: #d9d9d9;
     }
     pre {
         overflow-x: auto;
@@ -29,6 +29,7 @@
         border: 1px solid;
         border-radius: 10px;
         background-color: #272727;
+        box-shadow: 0 0 3px 1px #646668;
     }
     code {
         color: #b5b5b5;
@@ -45,30 +46,17 @@
         border-radius: 5px;
         box-shadow: 0 0 5px floralwhite;
     }
-    @media screen and (max-width: 1400px) {
-        .container {
-            margin: 0;
-            box-shadow: none;
-        }
-    }
     .header {
-        border-bottom: 1px solid teal;
-        margin-bottom: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-    }
-    .source a {
-        font-size: xx-large;
-        font-weight: 700;
-    }
-    .source a:first-child {
-        margin-right: 20px;
+        border-bottom: 1px solid teal;
+        margin-bottom: 10px;
     }
     .section-demonstration {
         display: flex;
         flex-wrap: wrap;
+        padding: 50px 0;
     }
     .footer {
         text-align: right;
@@ -85,7 +73,7 @@
     .text {
         margin: 0;
         padding-bottom: 10px;
-        line-height: 1.5;
+        line-height: 1.6;
     }
     .block {
         flex-basis: 40%;
@@ -100,16 +88,25 @@
     }
     .info {
         padding: 0 5px;
-        background-color: #053344;
+        background-color: #0b232f;
         color: #ca83e7;
         border-radius: 5px;
+        box-shadow: 0 0 1px 1px #b8aae8;
+    }
+    .git,
+    .npm {
+        padding: 0.25rem;
+    }
+    .npm {
+        padding-right: 0.35rem;
     }
     .notice {
         margin-bottom: 10px;
-        border: 1px solid #7e5711;
+        border: 1px solid #a66511;
         padding: 10px;
         border-radius: 10px;
-        background-color: #0f1b1a;
+        background-color: #0c101a;
+        box-shadow: 0 0 3px 2px #4f491d;
     }
     .notice-text {
         margin: 0;
@@ -155,25 +152,38 @@
 
 <div class="container">
     <header class="header">
-        <div class="source">
-            <a href="https://github.com/DenisLopatin/animation-assistant">GIT</a>
-            <a href="https://www.npmjs.com/package/animation-assistant">NPM</a>
+        <div>
+            <span class="npm">
+            <a href="">NPM</a>
+        </span>
+            <span class="git">
+            <a href="">GIT</a>
+        </span>
         </div>
         <h1 class="heading heading-header info animateCssPlay">Animation Assistant</h1>
     </header>
 
     <main class="main">
         <section class="section">
+<!--            <div class="section-demonstration">-->
+<!--                <div class="block animation-css-example-play">-->
+<!--                    <h2 class="heading">animate.css</h2>-->
+<!--                    <p class="text">-->
+<!--                        Результат выполнения метода play объекта <span class="info">animationCssExamplePlay</span>.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--                <div class="block animation-css-example-play">-->
+<!--                    <h2 class="heading">animate.css</h2>-->
+<!--                    <p class="text">-->
+<!--                        Результат выполнения метода play объекта <span class="info">animationCssExamplePlay</span>.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
             <h2 class="heading">Введение</h2>
             <p class="text">
-                Плагин <span class="info">animation-assistant</span> создан для помощи в управлении анимациями на сайте. Он работает со многими известными библиотеками CSS анимаций:
+                Плагин <span class="info">animation-assistant</span> помогает работать с анимацией.
+                Плагин работает со многими известными библиотеками CSS:
             </p>
-
-            <div class="notice">
-                <p class="notice-text">
-                    Обратите внимание на версии приведенных ниже библиотек, если вы работате с устаравшей версией библиотеки, то данный плагин может не корректно работать или перестать работатиь вообще.
-                </p>
-            </div>
 
             <ul class="ul">
                 <li class="list-item"><a class="link-item" href="#animate.css">animate.css 4.0.0^</a></li>
@@ -183,19 +193,9 @@
                 <li class="list-item"><a class="link-item" href="#magic.css">magic.css 1.1.0^</a></li>
                 <li class="list-item"><a class="link-item" href="#tuesday">tuesday 1.2.0^</a></li>
                 <li class="list-item"><a class="link-item" href="#repaintless">repaintless 1.3.0^</a></li>
-                <li class="list-item"><a class="link-item" href="#other">Возможно, ваша любимая библиотека CSS анимаций</a></li>
-                <li class="list-item"><a class="link-item" href="#your-animations">Использование ваших анимаций</a></li>
+                <li class="list-item"><a class="link-item" href="#other">Возможно, ваша любимая библиотека CSS анимации</a></li>
+                <li class="list-item"><a class="link-item" href="#other">Работа со своей анимацией через плагин</a></li>
             </ul>
-
-            <p class="text">
-                Плагин помогает интегрировать их в сайт предоставив готовые JavaScript функции для работы с ними.
-            </p>
-
-            <div class="notice">
-                <p class="notice-text">
-                    Имейте в виду, что в работе с CSS анимациями есть много подводных камней. Каждая библиотека работает по своему, что только добавляет неудобств. Внимательно читайте документацию. Основные азы работы с плагином описаны в разделе работы с библиотекой <span class="info">animate.css</span>. Обязательно ознакомьтесь с этим разделом даже если планируете использовать другую библиотеку для CSS анимаций.
-                </p>
-            </div>
 
             <h2 class="heading">Начало работы</h2>
 
@@ -205,7 +205,7 @@
 
             <pre>
             <code>
-            npm install --save animation-assistant
+    npm install --save animation-assistant
             </code>
             </pre>
 
@@ -219,7 +219,7 @@
 
             <pre>
             <code>
-            const AnimationAssistant = require('animation-assistant').default;
+    const AnimationAssistant = require('AnimationAssistant');
             </code>
             </pre>
 
@@ -229,19 +229,20 @@
 
             <pre>
             <code>
-            import AnimationAssistant from 'animation-assistant';
+    import AnimationAssistant from 'AnimationAssistant';
             </code>
             </pre>
 
             <p class="text">
-                Для начала необходимо получить экземпляр класса <span class="info">AnimationAssistant</span> вызвав соответствующий конструктор и передав ему CSS селектор анимируемых элементов. Например:
+                Для начала необходимо получить экземпляр класса <span class="info">AnimationAssistant</span> вызвав соответствующий
+                конструктор и передав ему CSS селектор. Например:
             </p>
 
             <p>HTML</p>
 
             <pre>
             <code>
-            &lt;div class="forAnimation">  &lt;/div>
+    &lt;div class="forAnimation">  &lt;/div>
             </code>
             </pre>
 
@@ -249,7 +250,7 @@
 
             <pre>
             <code>
-            const animation = new AnimationAssistant('forAnimation');
+    const animation = new AnimationAssistant('selector');
             </code>
             </pre>
 
@@ -261,9 +262,9 @@
 
             <pre>
             <code>
-            &lt;div class="your-class">    &lt;/div>
-            &lt;div class="your-class">    &lt;/div>
-            &lt;div class="your-class">    &lt;/div>
+    &lt;div class="your-class">    &lt;/div>
+    &lt;div class="your-class">    &lt;/div>
+    &lt;div class="your-class">    &lt;/div>
             </code>
             </pre>
 
@@ -271,239 +272,218 @@
 
             <pre>
             <code>
-            const animation = new AnimationAssistant('your-class');
+    const animation = new AnimationAssistant('your-class');
             </code>
             </pre>
 
             <p class="text">
-                Теперь объекту <span class="info">animation</span> доступны ряд методов для работы с анимациями. Объект не обязательно должен называться именно так, более того их может (а в некоторых случаях должно) быть несколько, так как каждый объект будет работать только с переданными ему элементами. Мы будем отталкиваться от данного названия просто в качестве примера.
-            </p>
-
-            <div class="notice">
-                <p class="notice-text">
-                    Не забудьте установить саму библиотеку в качестве зависимости в ваш проект, если это npm или просто добавьте тег link со ссылкой на cdn библиотеки.
-                </p>
-            </div>
-
-            <p class="text">
-                <span class="info">setLibrary</span> - Подготавливает выбранную CSS библиотеку для работы. Обязательный метод который устанавливает выбранную вами библиотеку для работы с анимациями добавляя необходимый префикс к анимируемым элементам.
+                <span class="info">animation.setLibrary(library: string): animation</span> - Принимает один аргумент в виде строки.
+                Возвращает текущий экземпляр класса. Подготавливает выбранную CSS библиотеку для работы.
+                Опциональный метод, который устанавливает выбранную вами библиотеку для работы с анимацией
+                добавляя необходимый префикс к элементам.
             </p>
 
             <p class="text">
-                <span class="info">addClasses</span> - Принимает массив с классами. В разных библиотеках есть свои вспомогательные классы или классы помощники, вы сможете установить их используя данный метод. Важно понимать, что они будут установленны сразу, не отталкиваясь от позиции на странице, событий и прочего.
+                <span class="info">animation.addClasses(array[]:string): animation</span> - Принимает массив с классами и добавляет их к элементам.
+                Возвращает текущий экземпляр класса.
             </p>
 
             <p class="text">
-                <span class="info">hideAtStart</span> - Скрывает элемент до начала анимации.
+                <span class="info">animation.hiddenLaunch(void): animation</span> - Скрывает элемент до начала анимации.
+                Возвращает текущий экземпляр класса.
             </p>
 
             <p class="text">
-                <span class="info">adaptEnvironment</span> - Адаптирует окружение элемента для корректной работы анимаций.
+                <span class="info">animation.adaptEnvironment({ pass: string, exclude: array[]:string } | void): animation</span> -
+                Принимает объект с настройками. Поле pass означает, что нужно перекинуть все классы с текущего элемента на родительский.
+                Поле exclude это массив с классами, которые не будут переброшены. Передача пустого значения будет означать отсутствие
+                переброса классов. Адаптирует окружение элемента для корректной работы анимаций. Возвращает текущий экземпляр класса.
             </p>
 
             <p class="text">
-                <span class="info">setAnimation</span> - Настраивает анимацию для работы. Основной метод для работы с анимациями. Принимает три параметра. <span class="info">offset</span> - цифра от 1 до 100 обозначающая расстояние в процентах от анимируемого элемента до верхнего края окна браузера для срабатывания анимации. <span class="info">name</span> - имя анимации, которое предоставляет библиотека. <span class="info">animationEnd</span> - callback функция, которая будет выполнена после завершения анимации. Примеры приведены ниже.
+                <span class="info">animation.setAnimation(offset: number, name: string, animationEnd: function): animation</span> -
+                offset - это значение от 1 до 100 (%) относительно верхнего края элемента до верхнего края окна пользователя. Параметр name -
+                это текущий класс, который будет задействован по сигналу от параметра offset. Параметр animationEnd запустит функцию
+                после окончания анимации. Настраивает анимацию для работы. Возвращает текущий экземпляр класса.
+                Функция обратного вызова <span class="info">animationEnd</span> может вернуть другую функцию обратного вызова со
+                следующей сигнатурой: <span class="info">animationEndCallback(current: HTMLElement): void</span>, где current -
+                это текущий элемент.
             </p>
 
             <p class="text">
-                <span class="info">play</span> - Запускает анимацию. В отличии от <span class="info">setAnimation</span> она запускает анимацию сразу не дожидаясь действия какого дибо события, но забегая наперед - ничто не помешает вам такое событие придумать. Принимает два параметра. <span class="info">name</span> - имя анимации, которое предоставляет библиотека. <span class="info">timeout</span> - время, спустя которое должна запуститься следующая анимация со значением по умолчанию в 2000ms. Обратите внимание, что указанное время в параметре <span class="info">timeout</span> не гарантирует запуск следующей анимации по истечении указанного вами времени или значения по умолчанию если таковое не было задано. Оно гарантирует запуск следующей анимации не раньше, чем указанное вами время. Метод возвращает промис. Примеры приведены ниже.
-            </p>
-
-            <h2 class="heading">Общие требования</h2>
-            <p class="text">
-                Не зависимо от того с какой библиотекой вы собираетесь работать, вы должны установить ее используя npm или cdn. Затем вам нужно создать новый экземпляр класса <span class="info">AnimationAssistant</span> передав туда CSS селектор элементов с которыми вы будите работать. Примеры были приведены выше.
-
-            <p class="text">
-                Также мы опишем здесь общие методы для работы с элементами независимо от библиотеки:
-            </p>
-
-            <pre>
-            <code>
-            const animation = new AnimationAssistant('your-classes'); <span class="code-comment">// выбираем нужные нам элементы</span>
-            animation.setLibrary('your-library'); <span class="code-comment">// устанавливаем библиотеку</span>
-            animation.addClasses(['first-class', 'second-class']); <span class="code-comment">// добавляем нужные классы</span>
-            animation.hideAtStart(); <span class="code-comment">// делаем элемент невидимым до начала анимации </span>
-            animation.adaptEnvironment(); <span class="code-comment">// адаптируем окружение</span>
-            </code>
-            </pre>
-
-            <p class="text">
-                Это были основные методы для работы с анимациями из которых только один является обязательным - <span class="info">animation.setLibrary('your-library')</span>.
-            </p>
-
-            <p class="text">
-                Два основных метода для работы с анимациями - <span class="info">setAnimation</span> и <span class="info">play</span> мы рассмотрим позже вкупе с поддерживаемыми CSS библиотеками анимаций.
+                <span class="info">animation.play(name: string, timeout: number): Promise</span> - name - это текущий класс,
+                который будет применен к элементу, timeout задает время до запуска следующей анимации. Запускает анимацию.
+                Возвращает Promise.
             </p>
 
             <h2 class="heading">Информация о работе плагина</h2>
 
             <p class="text">
-                Метод <span class="info">setLibrary</span> является обязательным, не забудьте вызвать его перед началом работы.
+                Метод <span class="info">setLibrary</span> является опциональным и может быть заменен методом <span class="info">addClasses</span>.
             </p>
 
             <p class="text">
-                Метод <span class="info">play</span> является асинхронным и возвращает промис. Используйте его для анимаций элементов на стартовом экране или в собственных событиях для привлечения внимания пользователей к элементу или к его появлению или удалению. Рекомендуется использовать значение <span class="info">once: true</span> так как многократное взаимодействие этого метода с другими пользовательскими событиями приведет к ошибке.
+                Все методы за исключение <span class="info">play</span> возвращают тот-же объект. Вы можете совершать цепочки вызовов.
             </p>
 
             <p class="text">
-                Метод <span class="info">setAnimation</span> настраивает параметр <span class="info">offset</span> только для элементов, которые будут встречаться при прокрутке вниз. Если прокручивать страницу вверх данный параметр будет проигнорирован а элемент будет проанимирован сразу как только его нижний край сравняется с верхним края окна браузера.
+                Метод <span class="info">play</span> является асинхронным и возвращает Promise. Используйте его для анимаций элементов на
+                стартовом экране или в собственных событиях для привлечения внимания пользователей к элементу. При этом в обработчике событий
+                рекомендуется использовать поле <span class="info">once: true</span>.
             </p>
 
             <p class="text">
-                Методы <span class="info">setAnimation</span> и <span class="info">play</span> должны вызываться самыми последними для более корректной работы плагина.
+                Метод <span class="info">setAnimation</span> настраивает параметр <span class="info">offset</span> только для элементов,
+                которые будут встречаться при прокрутке вниз. Если прокручивать страницу вверх данный параметр будет проигнорирован а
+                элемент будет использовать анимацию сразу как только его нижний край сравняется с верхним края окна браузера.
+            </p>
+
+            <p class="text">
+                Методы <span class="info">setAnimation</span> и <span class="info">play</span> должны вызываться самыми последними для более
+                корректной работы плагина.
             </p>
 
             <h2 class="heading">Советы</h2>
 
             <p class="text">
-                Не анимируйте корневой элемент и <span class="info">BODY</span>. Это возможно, но делать этого не следует.
+                Не используйте анимацию на корневом элементе или на <span class="info">BODY</span>. Это возможно, но делать этого не следует.
             </p>
 
             <p class="text">
-                Не используйте анимацию просто так. Анимация - это элемент взаимодействия с пользователем на сайте. Анимацией можно привлечь внимание, напомнить что либо или дать понять что действие было выполнено.
+                Не используйте анимацию просто так. Анимация - это элемент взаимодействия с пользователем на сайте. Анимацией можно привлечь
+                внимание, напомнить что либо или дать понять что действие было выполнено.
             </p>
 
             <p class="text">
-                Используйте одну библиотеку. Плагин поддерживает разные библиотеки, но не стоит использовать их все разом. Не желательно использовать более одной библиотеки на сайте.
+                Используйте одну библиотеку. Плагин поддерживает разные библиотеки, но не стоит использовать их все разом. Не желательно
+                использовать более одной библиотеки на сайте.
             </p>
 
             <p class="text">
-                Метод <span class="info">setAnimation</span> назначает обработчик события <span class="info">scroll</span> на группу элементов с которыми работает. Помните, что если вы имеете на сайте 10 экземпляров объекта <span class="info">AnimationAssistant</span>, то у вас в наличии 10 обработчиков на объекте <span class="info">window</span>. Это вопрос производительности.
+                Метод <span class="info">setAnimation</span> назначает обработчик события <span class="info">scroll</span> на каждый элемент
+                с которым работает. Помните, что если вы имеете на сайте 10 экземпляров объекта <span class="info">AnimationAssistant</span>
+                и в каждом из них по 10 элементов, то у вас в наличии будет 100 обработчиков на объекте <span class="info">window</span>.
+                Это вопрос производительности. Плагин будет удалять завершенные обработчики с документа.
             </p>
 
             <p class="text">
-                Чаще всего вы захотите использовать параметр <span class="info">offset</span> в значении 100. В этой позиции элемент будет анимирован сразу после того как его верхний край сравняется с нижним краем окна браузера. В большинстве случаев это то что нам нужно, так как пользователи могут прокручивать страницу очень быстро и просто не заметить анимации, если этот параметр будет установлен в более низком значении, например 10 или 20.
+                Чаще всего вы захотите использовать параметр <span class="info">offset</span> в значении 100. В этой позиции элемент будет
+                использовать анимацию сразу после того, как его верхний край сравняется с нижним краем окна браузера. В большинстве случаев
+                это то что нам нужно, так как пользователи могу прокручивать страницу очень быстро и просто не заметить анимации, если этот
+                параметр будет установлен в более низком значении, например 10 или 20.
             </p>
 
             <p class="text">
-                Библиотека может предоставить анимацию которая будет в бесконечном режиме. В этом случае вы должны быть готовы к ряду ограничений среди которых некорректная работа метода <span class="info">play</span> и невозможность вызвать callback функцию в методе <span class="info">setAnimation</span>.
+                Библиотека может предоставить анимацию, которая будет в бесконечном режиме. В этом случае вы должны быть готовы к ряду ограничений
+                среди которых некорректная работа метода <span class="info">play</span> и невозможность вызвать callback функцию в методе
+                <span class="info">setAnimation</span>.
             </p>
 
             <p class="text">
-                Если вы не хотите чтобы анимация проигрывалась на планшетных устройствах или мобильных телефонах, тогда добавьте в CSS класс который вы использовали при выборке элементов плагином и задайте ему два поля на интересующей вас точке останова - <span class="info">visibility: visible !important</span> и <span class="info">animation-name: none !important</span>. Например, у вас есть селектор классов <span class="info">for-animation</span> и вы отталкиваетесь от этого при использовании плагина:
+                Если вы не хотите чтобы анимация проигрывалась на планшетных устройствах или мобильных телефонах, тогда добавьте в CSS класс,
+                который вы использовали при выборке элементов плагином и задайте ему два поля на интересующей вас точке останова -
+                <span class="info">visibility: visible !important</span> и <span class="info">animation-name: none !important</span>.
+                Например, у вас есть селектор классов <span class="info">for-animation</span> и вы отталкиваетесь от этого при использовании
+                плагина:
             </p>
 
             <pre>
             <code>
-            const myAnimation = new AnimationAssistant('for-animation');
-            myAnimation.setLibrary('library');
-            myAnimation.setAnimation(...settings);
+    const myAnimation = new AnimationAssistant('for-animation');
+    myAnimation.setLibrary('library');
+    myAnimation.setAnimation(...settings);
             </code>
             </pre>
 
             <p class="text">
-                Вы не хотите чтобы эта анимация проигрывалась на устройствах размеры экрана которых меньше 670px. Просто добавьте следующие правила в css:
+                Вы не хотите чтобы эта анимация проигрывалась на устройствах размеры экрана которых меньше 670px. Просто добавьте следующие
+                правила в css:
             </p>
 
             <pre>
             <code>
-            @media screen and (max-width: 670px) {
-                .for-animation {
-                    visibility: visible !important;
-                    animation-name: none !important;
-                }
-            }
+    @media screen and (max-width: 670px) {
+        .for-animation {
+            visibility: visible !important;
+            animation-name: none !important;
+        }
+    }
             </code>
             </pre>
-
-            <div class="notice">
-                <p class="notice-text">
-                    Иногда вы можете заметить странное поведение анимируемых элементов в самом конце страницы. Например вместо двух элементов может проанимироваться только один. Что будет если мы выставим очень маленький параметр <span class="info">offset</span> для элементов в самом конце документа? По идее они не должны будут активировать анимацию, но в плагине есть специальная заглушка на такие случаи, и как только документ будет прокручен до конца, все находящиеся в пределах видимости пользовательского окна браузера элементы будут проанимированы. Но если анимация будет поднимать элемент снизу-вверх, то из двух элементов стоящих на одном уровне может быть проанимирован только один. Это происходит потому что один анимируемый элемент на секунду растянет вертикальный скролл страницы и следующий элемент, который находится с ним на одном уровне не зафиксирует окончание прокрутки для текущего документа. Для предотвращения таких ситуаций вы можете использовать метод <span class="info">adaptEnvironment</span>.
-                </p>
-            </div>
 
             <h2 class="heading" id="animate.css">animate.css</h2>
             <p class="text">
-               Для начала работы с библиотекой <span class="info">animate.css</span> следует создать новый экземпляр класса и установить библиотеку как зависимость:
+               Для начала работы с библиотекой <span class="info">animate.css</span> следует создать новый экземпляр класса и
+               вызвать метод <span class="info">setLibrary</span>:
             </p>
 
             <pre>
             <code>
-            const animationCssExamplePlay = new AnimationAssistant('animation-css-example-play');
-            animationCssExamplePlay.setLibrary('animate.css');
+    const animation = new AnimationAssistant('animation-css-example-play');
+    animation.setLibrary('animate.css');
             </code>
             </pre>
 
             <p class="text">
-                Затем можно вызвать метод <span class="info">play</span> и проиграть анимацию. Как вы помните данный метод принимает имя анимации и количество миллисекунд для запуска следующей анимации. Перейдя на сайт библиотеки <a href="https://animate.style/">animate.css</a> можно выбрать интересующие нас анимации, допустим ими оказались: <span class="info">animate__headShake</span>, <span class="info">animate__rubberBand</span> и <span class="info">animate__tada</span>. Установим их:
+                Затем можно вызвать метод <span class="info">play</span> и проиграть анимацию. Метод принимает
+                имя анимации и количество миллисекунд для запуска следующей анимации.
             </p>
 
             <pre>
             <code>
-            const animationCssExamplePlay = new AnimationAssistant('animation-css-example-play');
-            animationCssExamplePlay.setLibrary('animate.css');
-            <span class="code-new">animationCssExamplePlay.play('animate__headShake', 1500)
-                .then((res) => res('animate__rubberBand', 2000))
-                .then((res) => res('animate__tada'))
-                .catch((err) => console.error(err));
+    const animation = new AnimationAssistant('animation-css');
+    animation.setLibrary('animate.css');
+    <span class="code-new">const button = document.querySelector('button');
+    button.addEventListener(
+        'click',
+        () => {
+            animation
+                .play('animate__headShake', 2200)
+                .then((res) => res('animate__rubberBand', 4000))
+                .then((res) => res('animate__tada'));
+        },
+        { once: true },
+    );
             </span>
             </code>
             </pre>
-
-            <p class="text">
-                Анимация <span class="info">animate__headShake</span> будет проиграна мгновенно, <span class="info">animate__rubberBand</span> не раньше чем через 1500 миллисекунд, а <span class="info">animate__tada</span> не раньше чем через 2000 миллисекунд. Они будут выполняться последовательно. Сам метод возвращает промис у которого может быть вызван метод then. Используем этот метод вместе с данными анимациями и анимируем нижние два блока:
-            </p>
 
             <div class="section-demonstration">
                 <div class="block animation-css-example-play">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода play объекта <span class="info">animationCssExamplePlay</span>.
+                        Результат выполнения метода play.
                     </p>
                 </div>
                 <div class="block animation-css-example-play">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода play объекта <span class="info">animationCssExamplePlay</span>.
+                        Результат выполнения метода play.
                     </p>
                 </div>
             </div>
 
-            <p class="text">
-                Сейчас ы не увидели никакой анимации. Дело в том, что метод <span class="info">play</span> не назначает никакого события и все анимации проигрываются мгновенно после построения DOM дерева. Что-бы увидеть их просто перезагрузите страницу находясь на этом месте. Вы можете использовать ее только на элементах стартового экрана или как уже было сказано использовать его в своем событие.
-            </p>
-
-            <p class="text">
-                Создадим кнопку и навесим на нее обработчик события click внутри которого запустим нашу функцию.
-            </p>
-
             <button class="button">Кликни меня</button>
 
             <p class="text">
-                Теперь при нажатие на клавишу срабатывает анимация. Из-за асинхронного характера работы метода <span class="info">play</span> лучше запускать такой обработчик один раз с флагом <span class="info">once: true</span>. В противном случае анимация может повести себя некорректно при многократном нажатии. В JavaScript это будет выглядеть следующим образом:
+                Теперь при нажатии на клавишу срабатывает анимация. Из-за асинхронного характера работы метода <span class="info">play</span>
+                лучше запускать такой обработчик один раз с флагом <span class="info">once: true</span>. В противном случае анимация может
+                повести себя некорректно при многократном нажатии.
             </p>
-
-            <pre>
-            <code>
-            const animationCssExamplePlay = new AnimationAssistant('animation-css-example-play');
-            animationCssExamplePlay.setLibrary('animate.css');
-
-            <span class="code-new">const button = document.querySelector('button');
-            button.addEventListener('click', () => {
-                animationCssExamplePlay
-                    .play('animate__headShake', 2200)
-                    .then((res) => res('animate__rubberBand', 4000))
-                    .then((res) => res('animate__tada'));
-            }, { once: true });
-            </span>
-            </code>
-            </pre>
 
             <p class="text">
                 Количество анимаций применяемых методом <span class="info">play</span> ограничено только здравым смыслом.
             </p>
 
             <p class="text">
-                Если вы хотите настроить CSS анимацию на срабатывание при прокрутке, тогда воспользуйтесь методом <span class="info">setAnimation</span>. Как уже было сказано выше он принимает три параметра. <span class="info">offset</span>, <span class="info">name</span> и <span class="info">animationEnd</span>. Для начала следует определиться на каком расстоянии от верхнего края окна до элемента следует начать проигрывать анимацию. За это отвечает параметр <span class="info">offset</span>. Допустим мы решили, что это будет 20%. То есть как только элемент окажется меньше чем в 20% от верхнего края окна браузера анимация будет проиграна. Затем выберем саму анимацию, пусть это будет <span class="info">animate__backInRight</span>. Приступим:
+                Если вы хотите настроить CSS анимацию на срабатывание при прокрутке, тогда воспользуйтесь методом <span class="info">setAnimation</span>.
             </p>
 
             <pre>
             <code>
-            const animationCssExampleSetAnimation = new AnimationAssistant(
-                'animation-css-example-set-animation',
-            );
-            animationCssExampleSetAnimation.setLibrary('animate.css');
-            animationCssExampleSetAnimation.setAnimation(20, 'animate__backInRight');
+    const animation = new AnimationAssistant('animation-css');
+    animation.setLibrary('animate.css');
+    animation.setAnimation(40, 'animate__backInRight');
             </code>
             </pre>
 
@@ -511,30 +491,28 @@
                 <div class="block animation-css-example-set-animation">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода setAnimation объекта <span class="info">animationCssExampleSetAnimation</span>.
+                        Результат выполнения метода setAnimation.
                     </p>
                 </div>
                 <div class="block animation-css-example-set-animation">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода setAnimation объекта <span class="info">animationCssExampleSetAnimation</span>.
+                        Результат выполнения метода setAnimation.
                     </p>
                 </div>
             </div>
 
             <p class="text">
-                Вы могли заметить странное поведения элементов. Они сначала находятся на своем месте, но в момент срабатывания анимации резко исчезают и появляются справа увеличивая горизонтальный скролл. Именно для таких случаев необходимо воспользоваться рассматриваемыми ранее методами <span class="info">hideAtStart</span> для скрытия элементов до начала анимации и <span class="info">adaptEnvironment</span> для адаптации окружения под анимацию. Изменим это:
+                Элементы можно скрыть до начала анимации и подготовить родительский элемент к анимации:
             </p>
 
             <pre>
             <code>
-            const animationCssExampleSetAnimation2 = new AnimationAssistant(
-            'animation-css-example-set-animation2',
-            );
-            animationCssExampleSetAnimation2.setLibrary('animate.css');
-            <span class="code-new">animationCssExampleSetAnimation2.adaptEnvironment();
-            animationCssExampleSetAnimation2.hideAtStart();</span>
-            animationCssExampleSetAnimation2.setAnimation(20, 'animate__backInRight');
+    const animation = new AnimationAssistant('animation-css');
+    animation.setLibrary('animate.css');
+    <span class="code-new">animation.adaptEnvironment();
+    animation.hiddenLaunch();</span>
+    animation.setAnimation(40, 'animate__backInRight');
             </code>
             </pre>
 
@@ -542,30 +520,61 @@
                 <div class="block animation-css-example-set-animation2">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода setAnimation объекта <span class="info">animationCssExampleSetAnimation2</span>. Теперь все работает корректно.
+                        Результат выполнения метода setAnimation. Теперь все работает корректно.
                     </p>
                 </div>
                 <div class="block animation-css-example-set-animation2">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода setAnimation объекта <span class="info">animationCssExampleSetAnimation2</span>. Теперь все работает корректно.
+                        Результат выполнения метода setAnimation объекта. Теперь все работает корректно.
                     </p>
                 </div>
             </div>
 
             <p class="text">
-                Помимо всего этого нам могут понадобиться дополнительные классы. Например для библиотеки <span class="info">animate.css</span> это могут быть <span class="info">animate__slower</span> для более медленного проигрывания анимации и <span class="info">animate__repeat-2</span> для двукратного повторения анимации. Что-бы их добавить воспользуемся методом <span class="info">addClasses</span>.
+                Иногда понадобиться дополнительные классы. Например, для библиотеки <span class="info">animate.css</span> это могут быть
+                <span class="info">animate__slower</span> для более медленного проигрывания анимации. Добавлением классов занимается метод
+                <span class="info">addClasses</span>.
             </p>
 
             <pre>
             <code>
-            const animationCssExampleAddClasses = new AnimationAssistant('animation-css-example-add-classes');
-            <span class="code-new">animationCssExampleAddClasses.addClasses(['animate__slower', 'animate__repeat-2']);</span>
-            animationCssExampleAddClasses.adaptEnvironment();
-            animationCssExampleAddClasses.hideAtStart();
-            animationCssExampleAddClasses.setAnimation(20, 'animate__zoomInUp');
+            const animation = new AnimationAssistant('animation-css-example-add-classes');
+            <span class="code-new">animation.addClasses(['animate__slower', 'animate__repeat-2']);</span>
+            animation.adaptEnvironment();
+            animation.hideAtStart();
+            animation.setAnimation(20, 'animate__backInRight');
             </code>
             </pre>
+
+            <p class="text">
+                Так-же не забывайте про callback функцию, которая выполнится после завершения анимации. Вы можете передать ее третьим параметром:
+            </p>
+
+            <pre>
+            <code>
+            const animation = new AnimationAssistant('animation-css');
+            animation.addClasses(['animate__slow']);
+            animation.adaptEnvironment();
+            animation.hideAtStart();
+            animation.setAnimation(30, 'animate__bounceInLeft', <span class="code-new">() => {
+                <span class="code-comment">// ваш код, который будет выполнен после завершения анимации animate__bounceInLe</span>
+                <span class="code-comment">// выполнится единожды, даже если задано повторение анимации</span>
+                <span class="code-comment">// например при помощи класса animate__repeat-2 библиотеки animate.css</span>
+                <span class="code-comment">// помните, что если анимация находится в бесконечном режиме (infinity),</span>
+                <span class="code-comment">// то этот код не выполнится никогда</span>
+                return () => {
+                    <span class="code-comment">// этот код будет выполнен самым последним после выполнения всего кода</span>
+                    <span class="code-comment">// включая метод play и все его then</span>
+                };
+            });
+            </span>
+            </code>
+            </pre>
+
+            <p class="text">
+                Полный функционал плагина на примере библиотеки animate.css смотрите ниже:
+            </p>
 
             <div class="section-demonstration">
                 <div class="block animation-css-example-add-classes">
@@ -577,29 +586,35 @@
                 <div class="block animation-css-example-add-classes">
                     <h2 class="heading">animate.css</h2>
                     <p class="text">
-                        Результат выполнения метода <span class="info">addClasses</span> объекта <span class="info">animationCssExampleAddClasses</span>. Теперь все работает корректно.
+                        Результат выполнения метода <span class="info">addClasses</span> объекта
+                        <span class="info">animationCssExampleAddClasses</span>. Теперь все работает корректно.
                     </p>
                 </div>
             </div>
 
-            <p class="text">
-                Так-же не забывайте про callback функцию, которая выполнится после завершения анимации. Вы можете передать ее третьим параметром. Мы можем переписать пример выше следующим образом:
-            </p>
-
             <pre>
             <code>
-            const animationCssExampleAddClasses = new AnimationAssistant('animation-css-example-add-classes');
-            animationCssExampleAddClasses.addClasses(['animate__slower', 'animate__repeat-2']);
-            animationCssExampleAddClasses.adaptEnvironment();
-            animationCssExampleAddClasses.hideAtStart();
-            animationCssExampleAddClasses.setAnimation(20, 'animate__backInRight', <span class="code-new">() => {
-                <span class="code-comment">// ваш код...</span>
-                <span class="code-comment">// имейте в виду, что в данном случае он выполнится два раза!</span>
-                <span class="code-comment">// это происходит из за добавления класса animate__repeat-2</span>
-                <span class="code-comment">// помните, что если анимация находится в бесконечном режиме (infinity),</span>
-                <span class="code-comment">// то этот колбек не выполнится никогда</span>
-            });
-            </span>
+    new AnimationAssistant('animation-css-example-add-classes')
+        .setLibrary('animate.css')
+        .addClasses(['animate__slow'])
+        .adaptEnvironment()
+        .hiddenLaunch()
+        .setAnimation(30, 'animate__bounceInLeft', async () => {
+            <span class="code-comment">// тут можно сделать необходимые действия по завершении анимации animate__bounceInLeft</span>
+            const data = await (await fetch('www.api.com')?.json());
+            const element = document.querySelector('.selector');
+            element.addEventListener('click', listener);
+            return (target) => {
+                <span class="code-comment">// эта функция будет вызвана самой последней, следовательно, здесь можно почистить код</span>
+                <span class="code-comment">// например удалить обработчики и прокинуть объект данных, или что-нибудь еще</span>
+                <span class="code-comment">// параметр target - это текущий элемент на котором была проиграна анимация</span>
+                element.removeEventListener('click', listener);
+                myFunction(data, target);
+            };
+        })
+        .play('animate__bounce', 1500)
+        .then((res) => res('animate__jello', 2500))
+        .then((res) => res('animate__flipOutX'));
             </code>
             </pre>
 
@@ -1119,24 +1134,6 @@
 
             <p class="text">
                 Далее следуйте документации библиотеки и выбирая интересующие вас классы добавляйте их в метод <span class="info">play</span> или <span class="info">setAnimation</span>.
-            </p>
-
-            <h2 class="heading" id="your-animations">Работа со своими анимациями через плагин</h2>
-
-            <p class="text">
-                Вы можете использовать плагин для работы со своими анимациями. Для этого создайте экземпляр класса <span class="info">AnimationAssistant</span> и передайте ему CSS селектор элементов, которые вы планируете анимировать. Затем вызовите у вновь созданного объекта метод <span class="info">addClasses</span> и передайте туда ваш основной CSS класс при работе с анимациями. Он должен содержать как минимум одно поле - <span class="info">animation-duration</span>.
-            </p>
-
-            <pre>
-            <code>
-            const animated = new AnimationAssistant('your-selector');
-            const animated.addClasses('your-main-class-for-animation');
-            </code>
-            </pre>
-
-            <p class="text">
-                Затем необходимо добавить вашу CSS анимацию в метод <span class="info">play</span> или <span
-                    class="info">setAnimation</span>.
             </p>
 
         </section>

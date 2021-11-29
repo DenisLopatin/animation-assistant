@@ -19,6 +19,7 @@
         "object-curly-newline": "off",
         "no-unused-expressions": "off",
         "prefer-destructuring": "off",
+        "arrow-body-style": "off",
         "max-len": [
             "error",
             100,
