@@ -2,7 +2,7 @@
     "name": "animation-assistant",
     "version": "1.0.0",
     "description": "Animation assistant for a web application",
-    "main": "dist/scripts/AnimationAssistant.js",
+    "main": "dist/scripts/AnimationAssistant.ts",
     "scripts": {
         "production": "cross-env NODE_ENV=production webpack",
         "development": "cross-env NODE_ENV=development webpack",
@@ -64,7 +64,9 @@
         "sass-loader": "^10.1.0",
         "style-loader": "^2.0.0",
         "terser-webpack-plugin": "^5.0.3",
+        "ts-loader": "^9.2.6",
         "tsc-watch": "^4.5.0",
+        "typescript": "^4.5.2",
         "webpack": "^5.11.0",
         "webpack-cli": "^4.2.0",
         "webpack-dev-server": "^3.11.0"

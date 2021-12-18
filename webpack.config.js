@@ -12,7 +12,7 @@ module.exports = {
         main: path.resolve(__dirname, 'src/scripts', 'development.js'),
         AnimationAssistant: [
             '@babel/polyfill',
-            path.resolve(__dirname, 'src/scripts', 'AnimationAssistant.js'),
+            path.resolve(__dirname, 'src/scripts', 'AnimationAssistant.ts'),
         ],
     },
     output: {
@@ -45,6 +45,11 @@ module.exports = {
                 },
             },
             {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.css$/i,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -60,6 +65,9 @@ module.exports = {
                 ],
             },
         ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
         new CleanWebpackPlugin(),

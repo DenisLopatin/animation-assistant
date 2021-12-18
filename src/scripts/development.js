@@ -4,17 +4,17 @@ import 'hover.css/css/hover-min.css';
 import 'csshake/dist/csshake.min.css';
 import 'magic.css/dist/magic.min.css';
 import 'repaintless/repaintless-css/repaintless.min.css';
-import AnimationAssistant from './AnimationAssistant';
+import AnimationAssistant from './AnimationAssistant.ts';
 
 // animate.css
-const animationCssExamplePlay = new AnimationAssistant('animation-css-example-play');
-animationCssExamplePlay.setLibrary('animate.css');
+const animationCssExamplePlay = new AnimationAssistant(document.querySelectorAll('.animation-css-example-play'));
 
 const button = document.querySelector('button');
 button.addEventListener(
     'click',
     () => {
         animationCssExamplePlay
+            .setLibrary('animate.css')
             .play('animate__headShake', 2200)
             .then((res) => res('animate__rubberBand', 4000))
             .then((res) => res('animate__tada'));
@@ -22,25 +22,21 @@ button.addEventListener(
     { once: true },
 );
 
-const animationCssExampleSetAnimation = new AnimationAssistant(
-    'animation-css-example-set-animation',
-);
-animationCssExampleSetAnimation.setLibrary('animate.css');
-animationCssExampleSetAnimation.setAnimation(40, 'animate__backInRight');
-
-const animationCssExampleSetAnimation2 = new AnimationAssistant(
-    'animation-css-example-set-animation2',
-);
-animationCssExampleSetAnimation2.setLibrary('animate.css');
-animationCssExampleSetAnimation2.adaptEnvironment();
-animationCssExampleSetAnimation2.hiddenLaunch();
-animationCssExampleSetAnimation2.setAnimation(40, 'animate__backInRight');
-
-new AnimationAssistant('animation-css-example-add-classes')
+new AnimationAssistant(document.querySelectorAll('.animation-css-example-set-animation'))
     .setLibrary('animate.css')
-    .addClasses(['animate__slow'])
-    .adaptEnvironment()
+    .setAnimation(40, 'animate__backInRight');
+
+new AnimationAssistant(document.querySelectorAll('.animation-css-example-set-animation2'))
+    .adaptation()
     .hiddenLaunch()
+    .setLibrary('animate.css')
+    .setAnimation(40, 'animate__backInRight');
+
+new AnimationAssistant(document.querySelectorAll('.animation-css-example-add-classes'))
+    .addClasses(['animate__slow'])
+    .adaptation()
+    .hiddenLaunch()
+    .setLibrary('animate.css')
     .setAnimation(30, 'animate__bounceInLeft', () => {
         // ваш код, который будет выполнен после завершения анимации 'animate__bounceInLe'
         // выполнится единожды, даже если задано повторение анимации
