@@ -2,7 +2,7 @@
     "name": "animation-assistant",
     "version": "1.0.0",
     "description": "Animation assistant for a web application",
-    "main": "dist/scripts/AnimationAssistant.ts",
+    "main": "src/scripts/classes/AnimationAssistant.ts",
     "scripts": {
         "production": "cross-env NODE_ENV=production webpack",
         "development": "cross-env NODE_ENV=development webpack",

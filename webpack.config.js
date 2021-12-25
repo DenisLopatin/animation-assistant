@@ -12,7 +12,7 @@ module.exports = {
         main: path.resolve(__dirname, 'src/scripts', 'development.js'),
         AnimationAssistant: [
             '@babel/polyfill',
-            path.resolve(__dirname, 'src/scripts', 'AnimationAssistant.ts'),
+            path.resolve(__dirname, 'src/scripts/classes', 'AnimationAssistant.ts'),
         ],
     },
     output: {

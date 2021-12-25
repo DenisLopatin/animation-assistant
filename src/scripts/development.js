@@ -4,7 +4,7 @@ import 'hover.css/css/hover-min.css';
 import 'csshake/dist/csshake.min.css';
 import 'magic.css/dist/magic.min.css';
 import 'repaintless/repaintless-css/repaintless.min.css';
-import AnimationAssistant from './AnimationAssistant.ts';
+import AnimationAssistant from './classes/AnimationAssistant.ts';
 
 // animate.css
 const animationCssExamplePlay = new AnimationAssistant(document.querySelectorAll('.animation-css-example-play'));
@@ -37,18 +37,36 @@ new AnimationAssistant(document.querySelectorAll('.animation-css-example-add-cla
     .adaptation()
     .hiddenLaunch()
     .setLibrary('animate.css')
-    .setAnimation(30, 'animate__bounceInLeft', () => {
+    .setAnimation(30, 'animate__bounceInLeft', (event) => {
+        console.log(event);
+        console.log('cb');
         // ваш код, который будет выполнен после завершения анимации 'animate__bounceInLe'
         // выполнится единожды, даже если задано повторение анимации
         // например при помощи класса animate__repeat-2 библиотеки animate.css
         // помните, что если анимация находится в бесконечном режиме (infinity),
         // то этот код не выполнится никогда
-        return () => {
+        return (target) => {
+            console.log(target);
+            console.log('inner cb');
             // этот код будет выполнен самым последним после выполнения всего кода
             // включая метод 'play' и все его 'then'
         };
     })
     .play('animate__bounce', 1500)
+    .then((res) => res('animate__jello', 2500))
+    .then((res) => res('animate__flipOutX'));
+
+new AnimationAssistant(document.querySelectorAll('.cssanimation-example'))
+    .addClasses(['animate__slow'])
+    .adaptation()
+    .hiddenLaunch()
+    .setLibrary('animate.css')
+    .setAnimation(30, 'animate__flipOutX')
+    .play('animate__bounce', 1500)
+    .then((res) => res('animate__jello', 2500))
+    .then((res) => res('animate__flipOutX'))
+    .then((res) => res('animate__jello', 2500))
+    .then((res) => res('animate__flipOutX'))
     .then((res) => res('animate__jello', 2500))
     .then((res) => res('animate__flipOutX'));
 
