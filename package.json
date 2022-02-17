@@ -5,12 +5,10 @@
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "scripts": {
-        "production": "cross-env NODE_ENV=production webpack",
-        "development": "cross-env NODE_ENV=development webpack",
         "server": "cross-env NODE_ENV=development webpack serve",
         "ts-watch": "tsc-watch src/scripts/AnimationAssistant.ts",
         "publish": "npm publish",
-        "prepare": "tsc --declare"
+        "build": "use tsc with declare flag"
     },
     "keywords": [
         "animation",

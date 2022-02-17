@@ -37,7 +37,7 @@ export default class AnimationAssistant extends Libraries implements IAnimationA
         this.elements.forEach((element): void => {
             const parent = element.parentElement;
             if (parent && parent.tagName !== 'BODY' && parent.tagName !== 'HTML') {
-                element.parentElement.style.overflow = 'hidden';
+                element.parentElement!.style.overflow = 'hidden';
             }
         });
 
@@ -74,7 +74,7 @@ export default class AnimationAssistant extends Libraries implements IAnimationA
             version: AnimationAssistant.version,
             support: AnimationAssistant.supports,
             git: 'https://github.com/DenisLopatin/animation-assistant',
-            documentation: 'https://denislopatin.github.io/animation-assistant/index.html'
+            documentation: 'https://denislopatin.github.io/animation-assistant/'
         };
     }
 }

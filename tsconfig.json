@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
@@ -15,7 +16,7 @@
     "lib": [
       "dom",
       "dom.Iterable",
-      "es5",
+      "es2015",
       "scripthost",
       "es2015.iterable",
       "webworker"
