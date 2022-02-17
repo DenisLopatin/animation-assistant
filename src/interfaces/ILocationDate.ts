@@ -1,4 +1,4 @@
-interface ILocationDate {
+export default interface ILocationDate {
     getOffsetTop(element: HTMLElement): number;
     getOffsetBottom(element: HTMLElement): number;
     getPercentOfOffset(top: number): number;

@@ -1,3 +1,5 @@
+import ILocationDate from '../../interfaces/ILocationDate';
+
 export default class LocationData implements ILocationDate {
     public getOffsetTop(element: HTMLElement): number {
         return element.getBoundingClientRect().top;
@@ -39,6 +41,7 @@ export default class LocationData implements ILocationDate {
     public isElementInViewImmediatelyAfterLoading(element: HTMLElement): boolean {
         const userViewingArea = this.getUserViewportAfterLoading();
         const areaElementLocation = this.getLocationElementAfterLoading(element);
+
         return (userViewingArea - areaElementLocation > 0) &&
             (userViewingArea - areaElementLocation <= document.documentElement.clientHeight);
     }
@@ -48,6 +51,7 @@ export default class LocationData implements ILocationDate {
         const maxHeightOfPage = this.getMaxHeightOfPage();
         const clientHeight = document.documentElement.clientHeight;
         const documentElementOffsetTop = (maxHeightOfPage - clientHeight) * -1;
+
         return offsetTop === documentElementOffsetTop;
     }
 }

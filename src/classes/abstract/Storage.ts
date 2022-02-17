@@ -1,4 +1,4 @@
-import {listeners} from '../types';
+import {listeners} from '../../types';
 
 export default abstract class Storage {
     protected static listeners: listeners = {

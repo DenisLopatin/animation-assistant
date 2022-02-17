@@ -1,12 +1,3 @@
-# WEBPACK-5
-## My webpack config
-### Include:
-* sass
-* postcss
-* autoprefixer
-* main loaders
-* babel
-* eslint
-* prettier
-* husky
-* lint-staged
+# Animation-Assistant
+
+See documentation [here](https://denislopatin.github.io/animation-assistant/)

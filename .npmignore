@@ -1,0 +1,9 @@
+/node_modules
+/src/index.html
+.eslintignore
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierrc
+package-lock.json
+webpack.config.js

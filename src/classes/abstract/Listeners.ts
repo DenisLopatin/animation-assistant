@@ -1,14 +1,19 @@
-import {animationend} from '../types';
+import {animationend} from '../../types';
+import IEvent from '../../interfaces/IEvent';
+import ILocationDate from '../../interfaces/ILocationDate';
 
 export default abstract class Listeners {
     protected constructor(
         protected readonly elements: NodeListOf<HTMLElement>,
+        protected readonly stop: boolean,
         protected readonly storage: IEvent,
         protected readonly support: ILocationDate,
         protected readonly queue: [string, number][] = [],
         protected currentClass: string = '',
+        protected timeouts: {[key: number]: ReturnType<typeof setTimeout>} = {},
     ) {
         this.elements = elements;
+        this.stop = stop;
         this.storage = storage;
         this.support = support;
     }
@@ -24,15 +29,24 @@ export default abstract class Listeners {
         const elementOffsetBottom = this.support.getOffsetBottom(element);
         const percentOfOffset = this.support.getPercentOfOffset(elementOffsetTop);
         const isEndOfPage = this.support.isEndOfPage();
-        const conditionsIfElementOnTop = elementOnTop && (offset > percentOfOffset || isEndOfPage);
-        const conditionsIfElementOnBottom = !elementOnTop && elementOffsetBottom > 0;
+        const isElementVisible = this.support.isElementInViewImmediatelyAfterLoading(element);
+        const conditionsIfElementOnTop = (elementOnTop && offset > percentOfOffset && percentOfOffset >= 0) || isEndOfPage;
+        const conditionsIfElementOnBottom = !elementOnTop && elementOffsetBottom > 0 && isElementVisible;
         const conditions = conditionsIfElementOnTop || conditionsIfElementOnBottom;
-        // console.log(eventNumber)
-        if (conditions) {
-            this.executeListener(element, animationend);
 
-            const currentListener = this.storage.getCurrentListener(eventNumber);
-            window.removeEventListener('scroll', currentListener);
+        if (conditions) {
+            if (this.timeouts[eventNumber]) clearTimeout(this.timeouts[eventNumber]);
+
+            this.timeouts[eventNumber] = setTimeout(() => {
+                this.executeListener(element, animationend);
+
+                const currentListener = this.storage.getCurrentListener(eventNumber);
+                window.removeEventListener('scroll', currentListener);
+            });
+        }
+
+        if (!conditions) {
+            clearTimeout(this.timeouts[eventNumber]);
         }
     }
 
@@ -40,9 +54,8 @@ export default abstract class Listeners {
         const copyQueue = [...this.queue];
         let animationendFirstRun = true;
         let animationendCallback: (target: HTMLElement) => void;
-        let currentClass = this.currentClass;
-
-        element.classList.add(currentClass);
+        let currentClass = this.currentClass.trim();
+        element.classList.add(...currentClass.split(' '));
         element.style.visibility = '';
 
         const animationEndWrapper = (event: AnimationEventInit) => {
@@ -55,6 +68,7 @@ export default abstract class Listeners {
             }
 
             if (copyQueue.length) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 const [anotherName, timer] = copyQueue.shift()!;
                 setTimeout(() => {
                     element.classList.remove(currentClass);

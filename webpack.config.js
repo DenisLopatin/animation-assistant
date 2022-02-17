@@ -9,10 +9,10 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, 'src/scripts', 'development.js'),
+        main: path.resolve(__dirname, 'src', 'main.js'),
         AnimationAssistant: [
             '@babel/polyfill',
-            path.resolve(__dirname, 'src/scripts/classes', 'AnimationAssistant.ts'),
+            path.resolve(__dirname, 'src/classes/core', 'AnimationAssistant.ts'),
         ],
     },
     output: {
@@ -77,10 +77,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
             filename: 'index.html',
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'en-index.html'),
-            filename: 'en-index.html',
         }),
     ],
     optimization: {
