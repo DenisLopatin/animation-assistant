@@ -1,3 +1,3 @@
 # Animation-Assistant
 
-See documentation [here](https://denislopatin.github.io/animation-assistant/)
+See documentation [here](https://animation-assistant-docs.vercel.app/)
