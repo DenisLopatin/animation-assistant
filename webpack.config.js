@@ -1,89 +1,89 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const isDev = process.env.NODE_ENV === 'development';
-
-module.exports = {
-    entry: {
-        main: path.resolve(__dirname, 'src', 'main.js'),
-        AnimationAssistant: [
-            '@babel/polyfill',
-            path.resolve(__dirname, 'src/classes/core', 'AnimationAssistant.ts'),
-        ],
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'scripts/[name].js',
-        publicPath: '',
-    },
-    target: isDev ? 'web' : 'browserslist',
-    devtool: 'source-map',
-    devServer: {
-        port: 9000,
-        hot: true,
-        open: 'firefox',
-        contentBase: path.resolve(__dirname, 'src'),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.html$/i,
-                loader: 'html-loader',
-            },
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                    },
-                },
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.css$/i,
-                use: [
-                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcssOptions: {
-                                plugins: [require('autoprefixer')],
-                            },
-                        },
-                    },
-                ],
-            },
-        ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash].css',
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'index.html'),
-            filename: 'index.html',
-        }),
+module.exports = (env, { mode }) => ({
+  entry: {
+    main: [
+      '@babel/polyfill',
+      path.resolve(__dirname, 'src', 'development', 'scripts', 'main.js'),
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
-        splitChunks: {
-            chunks: 'all',
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'scripts/[name].js',
+    publicPath: '',
+    clean: true,
+  },
+  target: mode === 'development' ? 'web' : 'browserslist',
+  devtool: mode === 'development' ? 'inline-source-map' : 'source-map',
+  devServer: {
+    watchFiles: [path.resolve(__dirname, 'src', 'development', 'index.html')],
+    port: 9000,
+    hot: true,
+    open: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
         },
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              compilerOptions: {
+                noEmit: false,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [require('autoprefixer')],
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'src/development/css/style.[name].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'development', 'index.html'),
+      filename: 'index.html',
+    }),
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    splitChunks: {
+      chunks: 'all',
     },
-};
+  },
+});

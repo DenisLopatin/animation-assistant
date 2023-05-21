@@ -1,10 +1,10 @@
 .idea
 /node_modules
-/src/index.html
+/src/development
 .eslintignore
 .eslintrc.js
 .gitignore
 .npmignore
-.prettierrc
-package-lock.json
 webpack.config.js
+tsconfig.json
+README.md

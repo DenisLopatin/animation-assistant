@@ -1,0 +1,20 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #0a081f;
+}
+
+.empty {
+    height: 50vh;
+}
+
+.fs-small {
+    font-size: 12px;
+}

@@ -1,6 +1,6 @@
 /node_modules
-/dist
 package.json
 package-lock.json
 webpack.config.js
 .eslintrc.js
+src/development/**/*.js
