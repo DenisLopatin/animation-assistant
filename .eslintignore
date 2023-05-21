@@ -1,6 +1,9 @@
 /node_modules
+/tests
 package.json
 package-lock.json
 webpack.config.js
 .eslintrc.js
+babel.config.js
+jest.config.js
 src/development/**/*.js
