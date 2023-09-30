@@ -8,9 +8,9 @@ new AnimationAssistant([document.querySelector('.animation-assistant-development
     .setMiddleware('start', () => console.log('start'))
     .setMiddleware('beforeAnimation', () => console.log('before animation'))
     .setMiddleware('afterAnimation', () => console.log('after animation'))
-    .setMiddleware('end', (elements) => {
+    .setMiddleware('end', (element) => {
         console.log('end');
-        elements[0].textContent = 'Welcome to the Animation Assistant plugin development mod! ' +
+        element.textContent = 'Welcome to the Animation Assistant plugin development mod! ' +
             'You can change this file at your discretion to ' +
             'test the functionality of the plugin. Good luck and thanks!';
     })

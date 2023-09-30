@@ -10,11 +10,11 @@ Install plugin:
 
 Usage npm:
 
-    import AnimationAssisatant from 'animation-assistant'
+    import AnimationAssistant from 'animation-assistant'
 
 Usage CommonJS:
 
-    const AnimationAssisatant = require('animation-assistant');
+    const AnimationAssistant = require('animation-assistant').default;
 
 ### Getting start
 
@@ -220,17 +220,17 @@ As a result, the entire life cycle will look like this:
             // 1. This function will be executed first
             console.log('start', elements);
         })
-        .setMiddleware('beforeAnimation', (elements) => {
+        .setMiddleware('beforeAnimation', (element) => {
             // 2. Then this
-            console.log('before animation', elements);
+            console.log('before animation', element);
         })
-        .setMiddleware('afterAnimation', (elements) => {
+        .setMiddleware('afterAnimation', (element) => {
             // 4. Then this
-            console.log('after animation', elements);
+            console.log('after animation', element);
         })
-        .setMiddleware('end', (elements) => {
+        .setMiddleware('end', (element) => {
             // 6. Then this
-            console.log('end', elements);
+            console.log('end', element);
         })
         // 3. Then the main animation will be played
         .setAnimation(0, 'animate__backInLeft', (event) => {
@@ -244,6 +244,16 @@ As a result, the entire life cycle will look like this:
         // 5. Then an additional animation will be played
         }, [['animate__wobble', 0], ['animate__bounce', 1500]])
         .catch();
+
+#### Pay attention!
+
+You always get the current element using hooks like `beforeAnimation`,
+`afterAnimation` and `end`. 
+
+Only when using hook `start` you get the entire collection of elements. 
+This is due to the fact that at the time of execution of this hook, 
+the cycle by elements has not yet started and when initializing the 
+lifecycle, it may be better to get them all.
 
 In this example, synchronous functions are used as middleware, but you
 can also use asynchronous calls. In this case, their order will not 
@@ -311,6 +321,32 @@ the page, you will notice how the block was on it at first, and then
 disappeared as the animation started working. To avoid this, hide 
 the blocks when loading the page if necessary.
 
+For example using `bootstrap.css` and `animate.css`:
+
+    <div class="container mt-4">
+        <div class="alert alert-secondary animation-assistant-development p-5 visually-hidden"></div>
+    </div>
+
+    new AnimationAssistant([document.querySelector('.animation-assistant-development')])
+        .setLibrary('animate.css')
+        .setMiddleware('beforeAnimation', (element) => {
+            // remove class before animation, perfect place for it
+            element.classList.remove('visually-hidden');
+        })
+        .setAnimation(20, 'animate__backInLeft', null, [['animate__wobble', 0], ['animate__bounce', 1500]])
+        .catch();
+
+There are many more ways to do this thanks to the flexible mechanism 
+of working with the code.
+
 Animated blocks can extend beyond the screen, so you need to take care
 of creating a container that would not allow horizontal or vertical 
 scrolling to appear.
+
+#### Pay attention!
+
+Do not use the `display: none` property to hide an element. Not only 
+does this negatively affect SEO, it also removes the element from the
+page, which is why it is impossible to get the correct position 
+coordinates from it, which will inevitably lead to errors. It is 
+better to use `visibility: hidden`.

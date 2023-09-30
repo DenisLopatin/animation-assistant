@@ -55,7 +55,7 @@ export default class Animator implements IAnimator {
         return playBackInstance;
     }
 
-    public setMiddleware(place: middlewarePlaces, callback: (elements: nodeIterable) => void): IAnimator {
+    public setMiddleware(place: middlewarePlaces, callback: (elements: nodeIterable|HTMLElement) => void): IAnimator {
         this.middlewares.push([ place, callback ]);
         return this;
     }

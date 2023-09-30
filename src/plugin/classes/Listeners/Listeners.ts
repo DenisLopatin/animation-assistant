@@ -30,22 +30,22 @@ export default class Listeners implements IListeners {
     // eslint-disable-next-line max-lines-per-function
     public async executeListener(listenerParams: ListenerParams): Promise<void> {
         const { element, classNames, queue, middlewareContainer, animationend } = listenerParams;
-        const { middleware, middlewares, elements } = middlewareContainer;
+        const { middleware, middlewares } = middlewareContainer;
         let firstRun = true;
         let currentClassNames = classNames;
 
-        await middleware.applyMiddleware('beforeAnimation', middlewares, elements);
+        await middleware.applyMiddleware('beforeAnimation', middlewares, element);
 
         element.classList.add(...currentClassNames.split(' '));
 
         const animationEndWrapper = async(event: AnimationEvent) => {
             if (firstRun) {
-                await middleware.applyMiddleware('afterAnimation', middlewares, elements);
+                await middleware.applyMiddleware('afterAnimation', middlewares, element);
                 firstRun = false;
             }
 
             if (!queue.length) {
-                await middleware.applyMiddleware('end', middlewares, elements);
+                await middleware.applyMiddleware('end', middlewares, element);
                 if (animationend) {
                     const callbackFromAnimationend = animationend(event);
 

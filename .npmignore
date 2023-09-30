@@ -1,10 +1,12 @@
 .idea
-/node_modules
-/src/development
+node_modules
+src
+tests
+babel.config.js
+jest.config.js
+tsconfig.json
 .eslintignore
 .eslintrc.js
 .gitignore
-.npmignore
 webpack.config.js
-tsconfig.json
 README.md

@@ -1,6 +1,6 @@
 {
   "name": "animation-assistant",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Animation assistant for a web application",
   "main": "dist/main.js",
   "scripts": {
