@@ -9,4 +9,3 @@ tsconfig.json
 .eslintrc.js
 .gitignore
 webpack.config.js
-README.md
