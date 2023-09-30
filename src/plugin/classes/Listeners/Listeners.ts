@@ -21,29 +21,39 @@ export default class Listeners implements IListeners {
             || conditionsIfElementOnTop || conditionForInaccessibleElement;
 
         if (conditionsForExecuteListener) {
-            this.executeListener({ element, classNames, queue, middlewareContainer, animationend });
+            void this.executeListener({ element, classNames, queue, middlewareContainer, animationend });
             const currentListener = this.eventsStorage.getCurrentListener(eventNumber);
             window.removeEventListener('scroll', currentListener);
         }
     }
 
-    public executeListener(listenerParams: ListenerParams): void {
+    // eslint-disable-next-line max-lines-per-function
+    public async executeListener(listenerParams: ListenerParams): Promise<void> {
         const { element, classNames, queue, middlewareContainer, animationend } = listenerParams;
         const { middleware, middlewares, elements } = middlewareContainer;
         let firstRun = true;
         let currentClassNames = classNames;
-        element.classList.add(...currentClassNames.split(' '));
-        middleware.applyMiddleware('beforeAnimation', middlewares, elements);
 
-        const animationEndWrapper = (event: AnimationEvent) => {
+        await middleware.applyMiddleware('beforeAnimation', middlewares, elements);
+
+        element.classList.add(...currentClassNames.split(' '));
+
+        const animationEndWrapper = async(event: AnimationEvent) => {
             if (firstRun) {
-                middleware.applyMiddleware('afterAnimation', middlewares, elements);
+                await middleware.applyMiddleware('afterAnimation', middlewares, elements);
                 firstRun = false;
             }
 
-            if (!queue.length && animationend) {
-                middleware.applyMiddleware('end', middlewares, elements);
-                animationend(event)(element);
+            if (!queue.length) {
+                await middleware.applyMiddleware('end', middlewares, elements);
+                if (animationend) {
+                    const callbackFromAnimationend = animationend(event);
+
+                    // eslint-disable-next-line max-depth
+                    if (callbackFromAnimationend && !(callbackFromAnimationend instanceof Promise)) {
+                        callbackFromAnimationend(element);
+                    }
+                }
             }
 
             if (queue.length) {
@@ -57,6 +67,7 @@ export default class Listeners implements IListeners {
             }
         };
 
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         element.addEventListener('animationend', animationEndWrapper);
     }
 }

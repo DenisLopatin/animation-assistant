@@ -20,12 +20,12 @@ export default class Animator implements IAnimator {
         private readonly middleware: IMiddleware,
     ) {}
 
-    public setAnimation(offset: number, classNames: string, animationend?: animationendCallback): IPlayback {
+    // eslint-disable-next-line max-params,max-len
+    public async setAnimation(offset: number, classNames: string, animationend?: animationendCallback, playback?: [string, number][])
+        : Promise<IPlayback> {
         const manageListeners = (element: HTMLElement): void => {
             const queue = this.payloadAnimationsQueue;
-            const { middleware } = this;
-            const { middlewares } = this;
-            const { elements } = this;
+            const { middleware, middlewares, elements } = this;
             const middlewareContainer = { middleware, middlewares, elements };
             const elementLocation = this.locationData.getElementLocation(element);
             const shouldAnimateElementNow = this.locationData.isElementInViewImmediatelyAfterLoading(element);
@@ -38,7 +38,7 @@ export default class Animator implements IAnimator {
             );
 
             if (shouldAnimateElementNow) {
-                this.listeners.executeListener({ element, classNames, queue, middlewareContainer, animationend });
+                void this.listeners.executeListener({ element, classNames, queue, middlewareContainer, animationend });
             }
 
             if (!shouldAnimateElementNow) {
@@ -47,10 +47,12 @@ export default class Animator implements IAnimator {
             }
         };
 
-        this.middleware.applyMiddleware('start', this.middlewares, this.elements);
+        await this.middleware.applyMiddleware('start', this.middlewares, this.elements);
 
         this.elements.forEach(manageListeners);
-        return new Playback(this.payloadAnimationsQueue);
+        const playBackInstance = new Playback(this.payloadAnimationsQueue);
+        playback?.forEach(([ animationName, timer ]) => playBackInstance.play(animationName, timer));
+        return playBackInstance;
     }
 
     public setMiddleware(place: middlewarePlaces, callback: (elements: nodeIterable) => void): IAnimator {

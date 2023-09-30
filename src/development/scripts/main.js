@@ -20,6 +20,5 @@ new AnimationAssistant([document.querySelector('.animation-assistant-development
         return (element) => {
             console.log(element);
         };
-    })
-    .play('animate__wobble', 0)
-    .play('animate__bounce', 500);
+    }, [['animate__wobble', 0], ['animate__bounce', 1500]])
+    .catch();
